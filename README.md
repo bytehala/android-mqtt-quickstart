@@ -25,8 +25,10 @@ http://www.hivemq.com/blog/mqtt-essentials/
 
 ### Create Your Own App
 (All you need is an MQTT broker)
+
 What you want from this project are the two .jar files inside the `libs/` directory.
-If you want to generate your own version of these .jar files, they can be built from source using maven: https://github.com/eclipse/paho.mqtt.java
+If you want to generate your own version of these .jar files, they can be built from source using maven:
+https://github.com/eclipse/paho.mqtt.java
 
 (Honestly, when I made an MQTT app for a client, I just built on top of this sample project.)
 
