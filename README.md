@@ -1,4 +1,4 @@
-# android-mqtt-quickstart
+# android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
 Android Studio port of the Eclipse paho MQTT sample project.
 
 ### Getting Started
