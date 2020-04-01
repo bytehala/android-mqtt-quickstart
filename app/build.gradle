@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 19
+    compileSdkVersion 29
     buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "org.eclipse.paho.android.service.sample"
-        minSdkVersion 11
-        targetSdkVersion 19
+        minSdkVersion 14
+        targetSdkVersion 29
     }
 
     buildTypes {
@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.1.0'
-    compile files('libs/org.eclipse.paho.android.service-1.0.2.jar')
-    compile files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
+    implementation "androidx.fragment:fragment:1.2.3"
+    implementation files('libs/org.eclipse.paho.android.service-1.0.2.jar')
+    implementation files('libs/org.eclipse.paho.client.mqttv3-1.0.2.jar')
 }

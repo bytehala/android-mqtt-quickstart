@@ -19,12 +19,16 @@ import org.eclipse.paho.android.service.sample.R;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import android.view.Menu;
+
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * The connection details activity operates the fragments that make up the
@@ -75,7 +79,7 @@ public class ConnectionDetails extends FragmentActivity implements
   private ChangeListener changeListener = null;
 
   /**
-   * @see android.support.v4.app.FragmentActivity#onCreate(android.os.Bundle)
+   * @see androidx.fragment.app.FragmentActivity#onCreate(android.os.Bundle)
    */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -268,7 +272,7 @@ public class ConnectionDetails extends FragmentActivity implements
     }
 
     /**
-     * @see android.support.v4.app.FragmentPagerAdapter#getItem(int)
+     * @see androidx.fragment.app.FragmentPagerAdapter#getItem(int)
      */
     @Override
     public Fragment getItem(int position) {

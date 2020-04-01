@@ -23,7 +23,6 @@ import org.eclipse.paho.android.service.sample.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -32,6 +31,8 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.core.app.NavUtils;
 
 /**
  * Handles collection of user information to create a new MQTT Client

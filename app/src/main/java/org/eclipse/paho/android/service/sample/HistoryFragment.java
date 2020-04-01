@@ -13,10 +13,11 @@
 package org.eclipse.paho.android.service.sample;
 
 import android.os.Bundle;
-import android.support.v4.app.ListFragment;
 import android.text.Spanned;
 import android.widget.ArrayAdapter;
 import org.eclipse.paho.android.service.sample.R;
+
+import androidx.fragment.app.ListFragment;
 
 /**
  * This fragment displays the history information for a client
