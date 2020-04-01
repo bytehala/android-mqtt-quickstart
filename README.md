@@ -1,3 +1,6 @@
+> :warning: **I'm in the process of migrating to AndroidX** If this does not build for you, please wait for the AndroidX version.
+Also, please feel free to create issues.
+
 # android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
 Android Studio port of the Eclipse paho MQTT sample project.
 
