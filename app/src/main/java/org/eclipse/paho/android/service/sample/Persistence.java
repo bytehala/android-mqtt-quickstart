@@ -257,7 +257,7 @@ public class Persistence extends SQLiteOpenHelper implements BaseColumns {
       opts.setKeepAliveInterval(keepAlive);
       opts.setConnectionTimeout(timeout);
 
-      opts.setPassword(password != null ? password.toCharArray() : null);
+      opts.setPassword(password != null ? password.toCharArray() : "".toCharArray());
       opts.setUserName(username);
 
       if (topic != null) {

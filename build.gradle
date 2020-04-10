@@ -2,14 +2,30 @@
 buildscript {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven {
+            url 'https://repo.eclipse.org/content/repositories/paho-releases/'
+            name 'Eclipse'
+        }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.0.0'
+        classpath 'com.android.tools.build:gradle:3.6.2'
     }
 }
 
 allprojects {
     repositories {
         jcenter()
+        maven {
+            url 'https://maven.google.com/'
+            name 'Google'
+        }
+        maven {
+            url 'https://repo.eclipse.org/content/repositories/paho-releases/'
+            name 'Eclipse'
+        }
     }
 }

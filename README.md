@@ -4,6 +4,10 @@ Also, please feel free to create issues.
 # android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
 Android Studio port of the Eclipse paho MQTT sample project.
 
+### Requirements
+1. Java 9 or below
+2. 
+
 ### Getting Started
 1. Download the code `git clone http://www.github.com/bytehala/android-mqtt-quickstart`
 2. Open the project in Android Studio
