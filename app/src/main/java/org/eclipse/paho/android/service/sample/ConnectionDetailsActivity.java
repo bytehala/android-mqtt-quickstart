@@ -15,7 +15,7 @@ package org.eclipse.paho.android.service.sample;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
-import org.eclipse.paho.android.service.sample.R;
+
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Bundle;
@@ -38,7 +38,7 @@ import android.view.Menu;
  * </ul>
  * 
  */
-public class ConnectionDetails extends FragmentActivity implements
+public class ConnectionDetailsActivity extends FragmentActivity implements
     ActionBar.TabListener {
 
   /**
@@ -59,8 +59,8 @@ public class ConnectionDetails extends FragmentActivity implements
    **/
   private String clientHandle = null;
 
-  /** This instance of <code>ConnectionDetails</code> **/
-  private final ConnectionDetails connectionDetails = this;
+  /** This instance of <code>ConnectionDetailsActivity</code> **/
+  private final ConnectionDetailsActivity connectionDetails = this;
 
   /**
    * The instance of {@link Connection} that the <code>clientHandle</code>

@@ -150,7 +150,7 @@ public class ClientConnections extends ListActivity {
       // selected connection
       Intent intent = new Intent();
       intent.setClassName(getApplicationContext().getPackageName(),
-          "org.eclipse.paho.android.service.sample.ConnectionDetails");
+          "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
       intent.putExtra("handle", c.handle());
       startActivity(intent);
     }

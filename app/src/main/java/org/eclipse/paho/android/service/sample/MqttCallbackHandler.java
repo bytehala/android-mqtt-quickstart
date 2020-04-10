@@ -62,7 +62,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
       //build intent
       Intent intent = new Intent();
-      intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetails");
+      intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
       intent.putExtra("handle", clientHandle);
 
       //notify the user
@@ -89,7 +89,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
     //create intent to start activity
     Intent intent = new Intent();
-    intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetails");
+    intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
     intent.putExtra("handle", clientHandle);
 
     //format string args

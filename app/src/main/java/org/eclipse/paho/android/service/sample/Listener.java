@@ -15,12 +15,9 @@ package org.eclipse.paho.android.service.sample;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.LogManager;
 
-import org.eclipse.paho.android.service.sample.R;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
@@ -39,7 +36,7 @@ import org.eclipse.paho.android.service.MqttAndroidClient;
 
 /**
  * Deals with actions performed in the {@link ClientConnections} activity
- * and the {@link ConnectionDetails} activity and associated fragments
+ * and the {@link ConnectionDetailsActivity} activity and associated fragments
  *
  */
 public class Listener implements OnMenuItemClickListener {
@@ -47,8 +44,8 @@ public class Listener implements OnMenuItemClickListener {
   /** The handle to a {@link Connection} object which contains the {@link MqttAndroidClient} associated with this object **/
   private String clientHandle = null;
 
-  /** {@link ConnectionDetails} reference used to perform some actions**/
-  private ConnectionDetails connectionDetails = null;
+  /** {@link ConnectionDetailsActivity} reference used to perform some actions**/
+  private ConnectionDetailsActivity connectionDetails = null;
   /** {@link ClientConnections} reference used to perform some actions**/
   private ClientConnections clientConnections = null;
   /** {@link Context} used to load and format strings **/
@@ -58,12 +55,12 @@ public class Listener implements OnMenuItemClickListener {
   static boolean logging = false;
 
   /**
-   * Constructs a listener object for use with {@link ConnectionDetails} activity and
+   * Constructs a listener object for use with {@link ConnectionDetailsActivity} activity and
    * associated fragments.
-   * @param connectionDetails The instance of {@link ConnectionDetails}
+   * @param connectionDetails The instance of {@link ConnectionDetailsActivity}
    * @param clientHandle The handle to the client that the actions are to be performed on
    */
-  public Listener(ConnectionDetails connectionDetails, String clientHandle)
+  public Listener(ConnectionDetailsActivity connectionDetails, String clientHandle)
   {
     this.connectionDetails = connectionDetails;
     this.clientHandle = clientHandle;
