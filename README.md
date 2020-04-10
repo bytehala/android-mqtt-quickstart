@@ -4,11 +4,17 @@
 Android Studio port of the Eclipse paho MQTT sample project.
 
 ### Environment Tested On
-I am maintaining this on my own, and as such am unable to test on  
-multiple devices and environments.
 1. OpenJDK Java 11 by Amazon (sdkman 11.0.6-amzn)
 2. Pixel XL API 29 emulator
 3. Android Studio 3.6.2
+
+I am maintaining this on my own, and as such am unable to test on multiple devices and environments.
+
+You can support me buy contributing code, filing bugs, asking/answering questions, or buying me a coffee.
+
+<a href='https://ko-fi.com/bytehala' target='_blank'>
+  <img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com' />
+</a>
 
 ### Getting Started
 1. Download the code `git clone http://www.github.com/bytehala/android-mqtt-quickstart`
