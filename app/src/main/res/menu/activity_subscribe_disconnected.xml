@@ -1,4 +1,4 @@
-<!-- 
+<!--
 Licensed Materials - Property of IBM
 
 5747-SM3
@@ -11,10 +11,11 @@ IBM Corp.
  -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    
-        <item
+
+    <item
         android:id="@+id/subscribe"
-		android:showAsAction="ifRoom"
+        android:showAsAction="ifRoom"
+        android:visible="false"
         android:title="@string/subscribe" />
-        <item android:id="@+id/connectMenuOption" android:title="@string/connect" android:showAsAction="ifRoom"></item>
+    <item android:id="@+id/connectMenuOption" android:title="@string/connect" android:showAsAction="ifRoom"></item>
 </menu>

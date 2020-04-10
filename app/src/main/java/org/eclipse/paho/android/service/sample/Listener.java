@@ -165,7 +165,9 @@ public class Listener implements OnMenuItemClickListener {
 
   /**
    * Subscribe to a topic that the user has specified
+   * @Deprecated - will move this to the activity that has the subscribe button
    */
+  @Deprecated
   private void subscribe()
   {
     String topic = ((EditText) connectionDetails.findViewById(R.id.topic)).getText().toString();
@@ -203,7 +205,9 @@ public class Listener implements OnMenuItemClickListener {
 
   /**
    * Publish the message the user has specified
+   * @Deprecated - will move this to the activity that has the publish button
    */
+  @Deprecated
   private void publish()
   {
     String topic = ((EditText) connectionDetails.findViewById(R.id.lastWillTopic))

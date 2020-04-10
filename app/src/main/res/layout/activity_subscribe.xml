@@ -82,4 +82,22 @@ IBM Corp.
     </RadioGroup>
     
 </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttonGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/qosSubGroup"
+        android:layout_marginTop="25dp">
+
+
+    <Button
+        android:id="@+id/subscribeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:enabled="false"
+        android:text="Subscribe" />
+    </LinearLayout>
+
 </RelativeLayout>

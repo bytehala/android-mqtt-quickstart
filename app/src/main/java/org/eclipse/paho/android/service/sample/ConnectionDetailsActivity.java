@@ -24,7 +24,15 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioGroup;
+
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
 /**
  * The connection details activity operates the fragments that make up the
@@ -222,6 +230,10 @@ public class ConnectionDetailsActivity extends FragmentActivity implements
     selected = tab.getPosition();
     // invalidate the options menu so it can be updated
     invalidateOptionsMenu();
+
+    updateButtons();
+
+
     // history fragment is at position zero so get this then refresh its
     // view
     ((HistoryFragment) sectionsPagerAdapter.getItem(0)).refresh();
@@ -325,10 +337,119 @@ public class ConnectionDetailsActivity extends FragmentActivity implements
           ((HistoryFragment) connectionDetails.sectionsPagerAdapter
               .getItem(0)).refresh();
 
+          updateButtons();
+
         }
       });
 
     }
+  }
+
+  private void updateButtons() {
+    boolean connected = Connections.getInstance(connectionDetails)
+            .getConnection(clientHandle).isConnected();
+
+    if(selected == 2) {
+      connectionDetails.findViewById(R.id.publishButton).setEnabled(connected);
+      connectionDetails.findViewById(R.id.publishButton).setOnClickListener(
+              view -> publish()
+      );
+    }
+    if(selected == 1) {
+      connectionDetails.findViewById(R.id.subscribeButton).setEnabled(connected);
+      connectionDetails.findViewById(R.id.subscribeButton).setOnClickListener(
+              view -> subscribe()
+      );
+    }
+  }
+
+  /**
+   * Subscribe to a topic that the user has specified
+   */
+  private void subscribe()
+  {
+    String topic = ((EditText) connectionDetails.findViewById(R.id.topic)).getText().toString();
+    ((EditText) connectionDetails.findViewById(R.id.topic)).getText().clear();
+
+    RadioGroup radio = (RadioGroup) connectionDetails.findViewById(R.id.qosSubRadio);
+    int checked = radio.getCheckedRadioButtonId();
+    int qos = ActivityConstants.defaultQos;
+
+    switch (checked) {
+      case R.id.qos0 :
+        qos = 0;
+        break;
+      case R.id.qos1 :
+        qos = 1;
+        break;
+      case R.id.qos2 :
+        qos = 2;
+        break;
+    }
+
+    try {
+      String[] topics = new String[1];
+      topics[0] = topic;
+      Connections.getInstance(this).getConnection(clientHandle).getClient()
+              .subscribe(topic, qos, null, new ActionListener(this, ActionListener.Action.SUBSCRIBE, clientHandle, topics));
+    }
+    catch (MqttSecurityException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to subscribe to" + topic + " the client with the handle " + clientHandle, e);
+    }
+    catch (MqttException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to subscribe to" + topic + " the client with the handle " + clientHandle, e);
+    }
+  }
+
+  /**
+   * Publish the message the user has specified
+   */
+  private void publish()
+  {
+    String topic = ((EditText) connectionDetails.findViewById(R.id.lastWillTopic))
+            .getText().toString();
+
+    ((EditText) connectionDetails.findViewById(R.id.lastWillTopic)).getText().clear();
+
+    String message = ((EditText) connectionDetails.findViewById(R.id.lastWill)).getText()
+            .toString();
+
+    ((EditText) connectionDetails.findViewById(R.id.lastWill)).getText().clear();
+
+    RadioGroup radio = (RadioGroup) connectionDetails.findViewById(R.id.qosRadio);
+    int checked = radio.getCheckedRadioButtonId();
+    int qos = ActivityConstants.defaultQos;
+
+    switch (checked) {
+      case R.id.qos0 :
+        qos = 0;
+        break;
+      case R.id.qos1 :
+        qos = 1;
+        break;
+      case R.id.qos2 :
+        qos = 2;
+        break;
+    }
+
+    boolean retained = ((CheckBox) connectionDetails.findViewById(R.id.retained))
+            .isChecked();
+
+    String[] args = new String[2];
+    args[0] = message;
+    args[1] = topic+";qos:"+qos+";retained:"+retained;
+
+    try {
+      Connections.getInstance(this).getConnection(clientHandle).getClient()
+              .publish(topic, message.getBytes(), qos, retained, null, new ActionListener(this, ActionListener.Action.PUBLISH, clientHandle, args));
+    }
+    catch (MqttSecurityException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
+    }
+    catch (MqttException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
+    }
+
   }
 
 }

@@ -15,6 +15,7 @@ IBM Corp.
         <item
         android:id="@+id/publish"
 		android:showAsAction="ifRoom"
+        android:visible="false"
         android:title="@string/publish" />
        <item android:id="@+id/connectMenuOption" android:title="@string/connect" android:showAsAction="ifRoom"></item>
 </menu>
