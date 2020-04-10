@@ -1,12 +1,14 @@
-> :warning: **I'm in the process of migrating to AndroidX** If this does not build for you, please wait for the AndroidX version.
-Also, please feel free to create issues.
+> :warning: **Please feel free to create issues if it does not run for you.
 
 # android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
 Android Studio port of the Eclipse paho MQTT sample project.
 
-### Requirements
-1. Java 9 or below
-2. 
+### Environment Tested On
+I am maintaining this on my own, and as such am unable to test on  
+multiple devices and environments.
+1. OpenJDK Java 11 by Amazon (sdkman 11.0.6-amzn)
+2. Pixel XL API 29 emulator
+3. Android Studio 3.6.2
 
 ### Getting Started
 1. Download the code `git clone http://www.github.com/bytehala/android-mqtt-quickstart`
@@ -31,13 +33,14 @@ Learn more about the other MQTT options such as QOS, Last Will, etc from this re
 http://www.hivemq.com/blog/mqtt-essentials/
 
 ### Create Your Own App
-(All you need is an MQTT broker)
+All you need is an MQTT broker.  
+This app is just piggybacking on HiveMQ's free broker.
 
-What you want from this project are the two .jar files inside the `libs/` directory.
-If you want to generate your own version of these .jar files, they can be built from source using maven:
+Take note of the dependencies in this project.
+`org.eclipse.paho.android.service` and `org.eclipse.paho.client.mqttv3` depend on the old android-support-v4, specifically the Fragment support class.
+Eclipse might update that someday, but as of now, we are unable to use the AndroidX version.
+
+The eclipse sources can be found at:
 https://github.com/eclipse/paho.mqtt.java
 
 (Honestly, when I made an MQTT app for a client, I just built on top of this sample project.)
-
-### Using Eclipse
-There's an Eclipse version available here: https://github.com/eclipse/paho.mqtt.java
