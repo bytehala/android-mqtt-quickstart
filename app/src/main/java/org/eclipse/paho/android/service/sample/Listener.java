@@ -21,8 +21,10 @@ import java.util.logging.LogManager;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -47,7 +49,7 @@ public class Listener implements OnMenuItemClickListener {
   /** {@link ConnectionDetailsActivity} reference used to perform some actions**/
   private ConnectionDetailsActivity connectionDetails = null;
   /** {@link ClientConnections} reference used to perform some actions**/
-  private ClientConnections clientConnections = null;
+  private Activity clientConnections = null;
   /** {@link Context} used to load and format strings **/
   private Context context = null;
 
@@ -72,7 +74,7 @@ public class Listener implements OnMenuItemClickListener {
    * Constructs a listener object for use with {@link ClientConnections} activity.
    * @param clientConnections The instance of {@link ClientConnections}
    */
-  public Listener(ClientConnections clientConnections) {
+  public Listener(Activity clientConnections) {
     this.clientConnections = clientConnections;
     context = clientConnections;
   }

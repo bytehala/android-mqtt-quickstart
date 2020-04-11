@@ -28,9 +28,9 @@ IBM Corp.
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
+        android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
-        android:background="@color/design_default_color_primary"
+        android:backgroundTint="@color/design_default_color_primary"
         android:clickable="true"
         android:src="@drawable/ic_add"/>
 </FrameLayout>

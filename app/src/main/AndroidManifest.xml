@@ -22,12 +22,19 @@
         </service>
 
         <!-- Main Activity -->
-        <activity android:name="org.eclipse.paho.android.service.sample.ClientConnections" >
-           <intent-filter>
+<!--        <activity android:name="org.eclipse.paho.android.service.sample.ClientConnections" >-->
+<!--           <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter> -->
+<!--        </activity>-->
+        <activity android:name="org.eclipse.paho.android.service.sample.MainActivity" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter> 
+            </intent-filter>
         </activity>
 
         <!-- New Connection Activity -->
