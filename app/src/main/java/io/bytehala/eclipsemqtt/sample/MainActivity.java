@@ -1,4 +1,4 @@
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import android.app.AlertDialog;
 import android.app.ListActivity;
@@ -15,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ListView;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Token to pass to the MQTT Service
      */
-    final static String TOKEN = "org.eclipse.paho.android.service.sample.ClientConnections";
+    final static String TOKEN = "io.bytehala.eclipsemqtt.sample.ClientConnections";
 
     /**
      * ArrayAdapter to populate the list view
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 //                    // selected connection
 //                    Intent intent = new Intent();
 //                    intent.setClassName(getApplicationContext().getPackageName(),
-//                            "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+//                            "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
 //                    intent.putExtra("handle", c.handle());
 //                    startActivity(intent);
 //                }
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     // selected connection
                     Intent intent = new Intent();
                     intent.setClassName(getApplicationContext().getPackageName(),
-                            "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+                            "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
                     intent.putExtra("handle", c.handle());
                     startActivity(intent);
                 }
@@ -153,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         createConnection = new Intent();
         createConnection.setClassName(
                 clientConnections.getApplicationContext(),
-                "org.eclipse.paho.android.service.sample.NewConnectionActivity");
+                "io.bytehala.eclipsemqtt.sample.NewConnectionActivity");
 
         clientConnections.startActivityForResult(createConnection,
                 ActivityConstants.connect);

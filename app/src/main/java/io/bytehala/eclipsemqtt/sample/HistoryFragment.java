@@ -10,13 +10,13 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.text.Spanned;
 import android.widget.ArrayAdapter;
-import org.eclipse.paho.android.service.sample.R;
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * This fragment displays the history information for a client

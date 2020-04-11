@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -19,7 +19,7 @@ import java.io.FileNotFoundException;
 import java.util.Map;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
-import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
+import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
@@ -52,7 +52,7 @@ public class ClientConnections extends ListActivity {
   /**
    * Token to pass to the MQTT Service
    */
-  final static String TOKEN = "org.eclipse.paho.android.service.sample.ClientConnections";
+  final static String TOKEN = "io.bytehala.eclipsemqtt.sample.ClientConnections";
 
   /**
    * ArrayAdapter to populate the list view
@@ -150,7 +150,7 @@ public class ClientConnections extends ListActivity {
       // selected connection
       Intent intent = new Intent();
       intent.setClassName(getApplicationContext().getPackageName(),
-          "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+          "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
       intent.putExtra("handle", c.handle());
       startActivity(intent);
     }

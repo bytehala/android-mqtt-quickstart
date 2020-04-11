@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -203,7 +203,7 @@ public class AdvancedActivity extends AppCompatActivity {
     private void lastWill() {
 
       Intent intent = new Intent();
-      intent.setClassName(advanced, "org.eclipse.paho.android.service.sample.LastWillActivity");
+      intent.setClassName(advanced, "io.bytehala.eclipsemqtt.sample.LastWillActivity");
       advanced.startActivityForResult(intent, ActivityConstants.lastWill);
 
     }

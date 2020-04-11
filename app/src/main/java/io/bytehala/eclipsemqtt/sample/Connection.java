@@ -10,14 +10,14 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import org.eclipse.paho.android.service.sample.R;
+import io.bytehala.eclipsemqtt.sample.R;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import android.content.Context;
 import android.text.Html;

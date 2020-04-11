@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,7 +24,6 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -32,8 +31,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 
-import org.eclipse.paho.android.service.sample.ActionListener.Action;
-import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
+import io.bytehala.eclipsemqtt.sample.ActionListener.Action;
+import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
 /**
@@ -270,7 +269,7 @@ public class Listener implements OnMenuItemClickListener {
     createConnection = new Intent();
     createConnection.setClassName(
         clientConnections.getApplicationContext(),
-        "org.eclipse.paho.android.service.sample.NewConnectionActivity");
+        "io.bytehala.eclipsemqtt.sample.NewConnectionActivity");
 
     clientConnections.startActivityForResult(createConnection,
         ActivityConstants.connect);

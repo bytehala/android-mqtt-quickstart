@@ -10,9 +10,9 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
-import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
+import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
 import org.eclipse.paho.client.mqttv3.IMqttActionListener;
 import org.eclipse.paho.client.mqttv3.IMqttToken;
 

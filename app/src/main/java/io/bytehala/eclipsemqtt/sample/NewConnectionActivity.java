@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -20,7 +20,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -188,7 +187,7 @@ public class NewConnectionActivity extends AppCompatActivity {
           case R.id.advanced :
             //start the advanced options activity
             dataBundle.setClassName(newConnection,
-                "org.eclipse.paho.android.service.sample.AdvancedActivity");
+                "io.bytehala.eclipsemqtt.sample.AdvancedActivity");
             newConnection.startActivityForResult(dataBundle,
                 ActivityConstants.advancedConnect);
 

@@ -10,9 +10,9 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
-import org.eclipse.paho.android.service.sample.R;
+import io.bytehala.eclipsemqtt.sample.R;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
@@ -20,7 +20,7 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
+import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
 
 /**
  * Handles call backs from the MQTT Client
@@ -64,7 +64,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
       //build intent
       Intent intent = new Intent();
-      intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+      intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
       intent.putExtra("handle", clientHandle);
 
       //notify the user
@@ -91,7 +91,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
     //create intent to start activity
     Intent intent = new Intent();
-    intent.setClassName(context, "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+    intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
     intent.putExtra("handle", clientHandle);
 
     //format string args

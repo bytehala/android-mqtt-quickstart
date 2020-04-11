@@ -10,15 +10,25 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package org.eclipse.paho.android.service.sample;
+package io.bytehala.eclipsemqtt.sample;
 
+import org.eclipse.paho.android.service.MqttTraceHandler;
 
-import android.os.Bundle;
+import android.util.Log;
 
-/**
- * For File selector to share data
- *
- */
-public interface CallbackBundle {
-	abstract void callback(Bundle bundle);
+public class MqttTraceCallback implements MqttTraceHandler {
+
+	public void traceDebug(java.lang.String arg0, java.lang.String arg1) {
+		Log.i(arg0, arg1);
+	};
+
+	public void traceError(java.lang.String arg0, java.lang.String arg1) {
+		Log.e(arg0, arg1);
+	};
+
+	public void traceException(java.lang.String arg0, java.lang.String arg1,
+			java.lang.Exception arg2) {
+		Log.e(arg0, arg1, arg2);
+	};
+
 }
