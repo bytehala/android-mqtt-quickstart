@@ -40,7 +40,7 @@ IBM Corp.
         android:id="@+id/serverGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/clientIdGroup" >
 
         <TextView
@@ -64,7 +64,7 @@ IBM Corp.
         android:id="@+id/portGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/serverGroup" >
 
         <TextView
@@ -88,7 +88,7 @@ IBM Corp.
         android:id="@+id/cleanSessionGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/portGroup" >
 
         <TextView
@@ -105,5 +105,14 @@ IBM Corp.
             android:contentDescription="@string/contentDescriptionCleanSession"
             android:text="@string/empty" />
     </LinearLayout>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/connectButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_below="@id/cleanSessionGroup"
+        android:text="@string/connect" />
 
 </RelativeLayout>

@@ -227,7 +227,8 @@ public class MainActivity extends AppCompatActivity {
         // The basic client information
         String server = (String) data.get(ActivityConstants.server);
         String clientId = (String) data.get(ActivityConstants.clientId);
-        int port = Integer.parseInt((String) data.get(ActivityConstants.port));
+        String portString = (String) data.get(ActivityConstants.port);
+        int port = Integer.parseInt((portString != null && !"".equals(portString) ? portString : "1883"));
         boolean cleanSession = (Boolean) data.get(ActivityConstants.cleanSession);
 
         boolean ssl = (Boolean) data.get(ActivityConstants.ssl);

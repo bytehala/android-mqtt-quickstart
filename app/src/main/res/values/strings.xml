@@ -93,7 +93,7 @@ IBM Corp.
     <string name="client_connected">Client connected successfully</string>
     
     <!-- Hints -->
-    <string name="serverURIHint">example.example.com</string>
+    <string name="serverURIHint">broker.hivemq.com</string>
     <string name="portHint">1883</string>
     <string name="contentDescriptionSSL">Enable SSL</string>
     <string name="contentDescriptionCleanSession">Clean Session</string>

@@ -95,7 +95,7 @@ IBM Corp.
         android:layout_below="@id/qosSubGroup"
         android:layout_marginTop="25dp"
         android:enabled="false"
-        android:text="Subscribe" />
+        android:text="@string/subscribe" />
 
 
 </RelativeLayout>

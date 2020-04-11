@@ -45,7 +45,7 @@ IBM Corp.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/messageGroup"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/topicGroup" >
         <TextView
             android:id="@+id/messageTextView"
@@ -72,7 +72,7 @@ IBM Corp.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/qosGroup"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_below="@id/messageGroup" >
 
         <TextView
@@ -80,7 +80,6 @@ IBM Corp.
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="40dp"
-            android:layout_marginTop="10dp"
             android:text="@string/qos" />
 
         <RadioGroup
@@ -111,19 +110,12 @@ IBM Corp.
                 android:text="@string/qos2" />
         </RadioGroup>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/retainedGroup"
-        android:layout_below="@id/qosGroup"
-        android:layout_marginTop="25dp" >
         <TextView
+            android:layout_marginStart="25dp"
             android:id="@+id/retainedTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
             android:text="@string/retained" />
 
         <CheckBox
@@ -131,16 +123,17 @@ IBM Corp.
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/empty" />
+
     </LinearLayout>
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/publishButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:enabled="false"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_below="@id/retainedGroup"
-        android:text="Publish" />
+        android:layout_below="@id/qosGroup"
+        android:text="@string/publish" />
 
 </RelativeLayout>

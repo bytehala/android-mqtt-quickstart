@@ -12,18 +12,11 @@
  */
 package io.bytehala.eclipsemqtt.sample;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.AppCompatButton;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -32,6 +25,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Handles collection of user information to create a new MQTT Client
@@ -49,6 +50,9 @@ public class NewConnectionActivity extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_new_connection);
+
+    AppCompatButton fab = findViewById(R.id.connectButton);
+    fab.setOnClickListener(view -> doConnectAction());
 
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
     adapter.addAll(readHosts());
@@ -128,61 +132,7 @@ public class NewConnectionActivity extends AppCompatActivity {
 
         switch (id) {
           case R.id.connectAction :
-            //extract client information
-            String server = ((AutoCompleteTextView) findViewById(R.id.serverURI))
-                .getText().toString();
-            String port = ((EditText) findViewById(R.id.port))
-                .getText().toString();
-            String clientId = ((EditText) findViewById(R.id.clientId))
-                .getText().toString();
-
-            if (server.equals(ActivityConstants.empty) || port.equals(ActivityConstants.empty) || clientId.equals(ActivityConstants.empty))
-            {
-              String notificationText = newConnection.getString(R.string.missingOptions);
-              Notify.toast(newConnection, notificationText, Toast.LENGTH_LONG);
-              return false;
-            }
-
-            boolean cleanSession = ((CheckBox) findViewById(R.id.cleanSessionCheckBox)).isChecked();
-            //persist server
-            persistServerURI(server);
-
-            //put data into a bundle to be passed back to ClientConnections
-            dataBundle.putExtra(ActivityConstants.server, server);
-            dataBundle.putExtra(ActivityConstants.port, port);
-            dataBundle.putExtra(ActivityConstants.clientId, clientId);
-            dataBundle.putExtra(ActivityConstants.action, ActivityConstants.connect);
-            dataBundle.putExtra(ActivityConstants.cleanSession, cleanSession);
-
-            if (result == null) {
-              // create a new bundle and put default advanced options into a bundle
-              result = new Bundle();
-
-              result.putString(ActivityConstants.message,
-                  ActivityConstants.empty);
-              result.putString(ActivityConstants.topic, ActivityConstants.empty);
-              result.putInt(ActivityConstants.qos, ActivityConstants.defaultQos);
-              result.putBoolean(ActivityConstants.retained,
-                  ActivityConstants.defaultRetained);
-
-              result.putString(ActivityConstants.username,
-                  ActivityConstants.empty);
-              result.putString(ActivityConstants.password,
-                  ActivityConstants.empty);
-
-              result.putInt(ActivityConstants.timeout,
-                  ActivityConstants.defaultTimeOut);
-              result.putInt(ActivityConstants.keepalive,
-                  ActivityConstants.defaultKeepAlive);
-              result.putBoolean(ActivityConstants.ssl,
-                  ActivityConstants.defaultSsl);
-
-            }
-            //add result bundle to the data being returned to ClientConnections
-            dataBundle.putExtras(result);
-
-            setResult(RESULT_OK, dataBundle);
-            newConnection.finish();
+            doConnectAction();
             break;
           case R.id.advanced :
             //start the advanced options activity
@@ -230,6 +180,91 @@ public class NewConnectionActivity extends AppCompatActivity {
       }
     }
 
+  }
+
+  private void doConnectAction() {
+    Intent dataBundle = new Intent();
+    //extract client information
+    String server = ((AutoCompleteTextView) findViewById(R.id.serverURI))
+            .getText().toString();
+    String port = ((EditText) findViewById(R.id.port))
+            .getText().toString();
+    String clientId = ((EditText) findViewById(R.id.clientId))
+            .getText().toString();
+
+    if (server.equals(ActivityConstants.empty) || port.equals(ActivityConstants.empty) || clientId.equals(ActivityConstants.empty))
+    {
+      String notificationText = this.getString(R.string.missingOptions);
+      Notify.toast(this, notificationText, Toast.LENGTH_LONG);
+//      return false;
+    }
+
+    boolean cleanSession = ((CheckBox) findViewById(R.id.cleanSessionCheckBox)).isChecked();
+    //persist server
+    persistServerURI(server);
+
+    //put data into a bundle to be passed back to ClientConnections
+    dataBundle.putExtra(ActivityConstants.server, server);
+    dataBundle.putExtra(ActivityConstants.port, port);
+    dataBundle.putExtra(ActivityConstants.clientId, clientId);
+    dataBundle.putExtra(ActivityConstants.action, ActivityConstants.connect);
+    dataBundle.putExtra(ActivityConstants.cleanSession, cleanSession);
+
+    if (result == null) {
+      // create a new bundle and put default advanced options into a bundle
+      result = new Bundle();
+
+      result.putString(ActivityConstants.message,
+              ActivityConstants.empty);
+      result.putString(ActivityConstants.topic, ActivityConstants.empty);
+      result.putInt(ActivityConstants.qos, ActivityConstants.defaultQos);
+      result.putBoolean(ActivityConstants.retained,
+              ActivityConstants.defaultRetained);
+
+      result.putString(ActivityConstants.username,
+              ActivityConstants.empty);
+      result.putString(ActivityConstants.password,
+              ActivityConstants.empty);
+
+      result.putInt(ActivityConstants.timeout,
+              ActivityConstants.defaultTimeOut);
+      result.putInt(ActivityConstants.keepalive,
+              ActivityConstants.defaultKeepAlive);
+      result.putBoolean(ActivityConstants.ssl,
+              ActivityConstants.defaultSsl);
+
+    }
+    //add result bundle to the data being returned to ClientConnections
+    dataBundle.putExtras(result);
+
+    setResult(RESULT_OK, dataBundle);
+    this.finish();
+  }
+
+  private void persistServerURI(String serverURI) {
+    File fileDir = this.getFilesDir();
+    File presited = new File(fileDir, "hosts.txt");
+    BufferedWriter bfw = null;
+    try {
+      bfw = new BufferedWriter(new FileWriter(presited));
+      bfw.write(serverURI);
+      bfw.newLine();
+    }
+    catch (IOException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+    finally {
+      try {
+        if (bfw != null) {
+          bfw.close();
+        }
+      }
+      catch (IOException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
   }
 
   /**
