@@ -67,6 +67,41 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new MainActivity.LongClickItemListener());
         listView.setTextFilterEnabled(true);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+//            protected void onListItemClick(ListView listView, View view, int position,
+//                                           long id) {
+//                super.onListItemClick(listView, view, position, id);
+//
+//                if (!contextualActionBarActive) {
+//                    Connection c = arrayAdapter.getItem(position);
+//
+//                    // start the connectionDetails activity to display the details about the
+//                    // selected connection
+//                    Intent intent = new Intent();
+//                    intent.setClassName(getApplicationContext().getPackageName(),
+//                            "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+//                    intent.putExtra("handle", c.handle());
+//                    startActivity(intent);
+//                }
+
+            @Override
+            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
+
+                if (!contextualActionBarActive) {
+                    Connection c = arrayAdapter.getItem(position);
+
+                    // start the connectionDetails activity to display the details about the
+                    // selected connection
+                    Intent intent = new Intent();
+                    intent.setClassName(getApplicationContext().getPackageName(),
+                            "org.eclipse.paho.android.service.sample.ConnectionDetailsActivity");
+                    intent.putExtra("handle", c.handle());
+                    startActivity(intent);
+                }
+            }
+        });
+
 
         FloatingActionButton fab = findViewById(R.id.addConnectionFab);
 
