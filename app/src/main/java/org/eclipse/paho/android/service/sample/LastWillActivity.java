@@ -3,11 +3,11 @@
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
- * and Eclipse Distribution License v1.0 which accompany this distribution. 
+ * and Eclipse Distribution License v1.0 which accompany this distribution.
  *
- * The Eclipse Public License is available at 
+ * The Eclipse Public License is available at
  *    http://www.eclipse.org/legal/epl-v10.html
- * and the Eclipse Distribution License is available at 
+ * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
 package org.eclipse.paho.android.service.sample;
@@ -15,24 +15,24 @@ package org.eclipse.paho.android.service.sample;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import org.eclipse.paho.android.service.sample.R;
 
 /**
  * Activity for setting the last will message for the client
  *
  */
-public class LastWill extends Activity {
+public class LastWillActivity extends AppCompatActivity {
 
   /**
-   * Reference to the current instance of <code>LastWill</code> for use with anonymous listener
+   * Reference to the current instance of <code>LastWillActivity</code> for use with anonymous listener
    */
-  private LastWill last = this;
+  private LastWillActivity last = this;
 
   /**
    * @see Activity#onCreate(Bundle)
@@ -40,7 +40,7 @@ public class LastWill extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_publish);
+    setContentView(R.layout.activity_last_will);
 
   }
 

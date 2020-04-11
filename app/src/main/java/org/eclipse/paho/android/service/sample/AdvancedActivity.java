@@ -20,6 +20,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -28,18 +29,17 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import org.eclipse.paho.android.service.sample.R;
 
 /**
- * Advanced connection options activity
+ * AdvancedActivity connection options activity
  *
  */
-public class Advanced extends Activity {
+public class AdvancedActivity extends AppCompatActivity {
 
   /**
-   * Reference to this class used in {@link Advanced.Listener} methods
+   * Reference to this class used in {@link AdvancedActivity.Listener} methods
    */
-  private Advanced advanced = this;
+  private AdvancedActivity advanced = this;
   /**
    * Holds the result data from activities launched from this activity
    */
@@ -203,7 +203,7 @@ public class Advanced extends Activity {
     private void lastWill() {
 
       Intent intent = new Intent();
-      intent.setClassName(advanced, "org.eclipse.paho.android.service.sample.LastWill");
+      intent.setClassName(advanced, "org.eclipse.paho.android.service.sample.LastWillActivity");
       advanced.startActivityForResult(intent, ActivityConstants.lastWill);
 
     }

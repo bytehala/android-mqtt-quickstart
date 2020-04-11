@@ -44,15 +44,15 @@
         </activity>
 
 
-        <!-- Advanced Options Screen -->
+        <!-- AdvancedActivity Options Screen -->
         <activity
-            android:name="org.eclipse.paho.android.service.sample.Advanced"
+            android:name="org.eclipse.paho.android.service.sample.AdvancedActivity"
             android:label="@string/title_activity_advanced" >
         </activity>
 
         <!-- Last Will Activity -->
         <activity
-            android:name="org.eclipse.paho.android.service.sample.LastWill"
+            android:name="org.eclipse.paho.android.service.sample.LastWillActivity"
             android:label="@string/title_activity_last_will" >
         </activity>
         

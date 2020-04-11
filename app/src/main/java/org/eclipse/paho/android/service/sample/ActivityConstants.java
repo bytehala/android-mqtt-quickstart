@@ -42,7 +42,7 @@ public class ActivityConstants {
 
   /** Connect Request Code */
   static final int connect = 0;
-  /** Advanced Connect Request Code  **/
+  /** AdvancedActivity Connect Request Code  **/
   static final int advancedConnect = 1;
   /** Last will Request Code  **/
   static final int lastWill = 2;

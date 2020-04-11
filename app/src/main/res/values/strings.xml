@@ -11,7 +11,7 @@ IBM Corp.
  -->
 <resources>
 
-    <string name="app_name">MQTT</string>
+    <string name="app_name">Bytehala MQTT</string>
     <string name="menu_settings">Settings</string>
     <string name="server">Server</string>
     <string name="port">Port</string>

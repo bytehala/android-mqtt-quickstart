@@ -188,7 +188,7 @@ public class NewConnectionActivity extends AppCompatActivity {
           case R.id.advanced :
             //start the advanced options activity
             dataBundle.setClassName(newConnection,
-                "org.eclipse.paho.android.service.sample.Advanced");
+                "org.eclipse.paho.android.service.sample.AdvancedActivity");
             newConnection.startActivityForResult(dataBundle,
                 ActivityConstants.advancedConnect);
 
