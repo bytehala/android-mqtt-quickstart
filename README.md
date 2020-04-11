@@ -35,7 +35,8 @@ MQTT is a messaging protocol which has applications in the Internet of Things (I
 This sample project uses Eclipse's open-source implementation called the Paho Project.
 If you go to the [original source](https://github.com/eclipse/paho.mqtt.java) where I lifted this project from, there are non-Android sample projects that use the Paho library.
 
-This video explains the MQTT for IoT at a very basic level.
+This youtube video explains the MQTT for IoT at a very basic level.
+
 [![](http://img.youtube.com/vi/1XzC3WqmiBs/0.jpg)](http://www.youtube.com/watch?v=1XzC3WqmiBs "Basics of MQTT IoT")
 
 Learn more about the other MQTT options such as QOS, Last Will, etc from this really helpful 12 part series by HiveMQ
