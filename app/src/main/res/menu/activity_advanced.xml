@@ -9,16 +9,18 @@ US Government Users Restricted Rights - Use, duplication or
 disclosure restricted by GSA ADP Schedule Contract with
 IBM Corp.
  -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto"
+    >
 
                <item
         android:id="@+id/ok"
         android:title="@string/save"
-        android:showAsAction="always" />
+        compat:showAsAction="always" />
                
                       <item
         android:id="@+id/setLastWill"
         android:title="@string/willMessage"
         android:titleCondensed="@string/willMessageShort"
-        android:showAsAction="always" />
+        compat:showAsAction="always" />
 </menu>

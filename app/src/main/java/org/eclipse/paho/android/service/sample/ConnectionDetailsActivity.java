@@ -16,14 +16,16 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
-import android.app.ActionBar;
-import android.app.FragmentTransaction;
+import android.support.v7.app.ActionBar;
+import android.support.v4.app.FragmentTransaction;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -46,7 +48,7 @@ import org.eclipse.paho.client.mqttv3.MqttSecurityException;
  * </ul>
  * 
  */
-public class ConnectionDetailsActivity extends FragmentActivity implements
+public class ConnectionDetailsActivity extends AppCompatActivity implements
     ActionBar.TabListener {
 
   /**
@@ -97,7 +99,7 @@ public class ConnectionDetailsActivity extends FragmentActivity implements
         getSupportFragmentManager());
 
     // Set up the action bar for tab navigation
-    final ActionBar actionBar = getActionBar();
+    final ActionBar actionBar = getSupportActionBar();
     actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
     // add the sectionsPagerAdapter
@@ -442,11 +444,7 @@ public class ConnectionDetailsActivity extends FragmentActivity implements
     try {
       Connections.getInstance(this).getConnection(clientHandle).getClient()
               .publish(topic, message.getBytes(), qos, retained, null, new ActionListener(this, ActionListener.Action.PUBLISH, clientHandle, args));
-    }
-    catch (MqttSecurityException e) {
-      Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
-    }
-    catch (MqttException e) {
+    } catch (MqttException e) {
       Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
     }
 

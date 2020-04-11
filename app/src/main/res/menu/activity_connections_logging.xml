@@ -9,16 +9,14 @@ US Government Users Restricted Rights - Use, duplication or
 disclosure restricted by GSA ADP Schedule Contract with
 IBM Corp.
  -->
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:compat="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/newConnection" android:enabled="true" 
         android:titleCondensed="@string/newConnectionShort" 
         android:title="@string/newConnection"
-        android:showAsAction="always" >
-    </item>
+        compat:showAsAction="always"/>
     <item android:id="@+id/endLogging" android:enabled="true"
         android:title="@string/endLogging"
-        android:showAsAction="never">
-        
-    </item>
+        compat:showAsAction="never"/>
 </menu>
