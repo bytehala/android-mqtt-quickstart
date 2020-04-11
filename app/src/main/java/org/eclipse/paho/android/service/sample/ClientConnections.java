@@ -210,7 +210,7 @@ public class ClientConnections extends ListActivity {
   /**
    * Process data from the connect action
    * 
-   * @param data the {@link Bundle} returned by the {@link NewConnection} Acitivty
+   * @param data the {@link Bundle} returned by the {@link NewConnectionActivity} Acitivty
    */
   private void connectAction(Bundle data) {
     MqttConnectOptions conOpt = new MqttConnectOptions();
@@ -465,7 +465,7 @@ public class ClientConnections extends ListActivity {
 
   /**
    * This class ensures that the user interface is updated as the Connection objects change their states
-   * 
+   *
    *
    */
   private class ChangeListener implements PropertyChangeListener {

@@ -27,7 +27,7 @@
 <!--                <action android:name="android.intent.action.MAIN" />-->
 
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter> -->
+<!--            </intent-filter>-->
 <!--        </activity>-->
         <activity android:name="org.eclipse.paho.android.service.sample.MainActivity" >
             <intent-filter>
@@ -39,7 +39,7 @@
 
         <!-- New Connection Activity -->
         <activity
-            android:name="org.eclipse.paho.android.service.sample.NewConnection" 
+            android:name="org.eclipse.paho.android.service.sample.NewConnectionActivity"
             android:label="@string/title_activity_new_connection" >
         </activity>
 

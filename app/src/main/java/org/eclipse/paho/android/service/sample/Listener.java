@@ -261,6 +261,7 @@ public class Listener implements OnMenuItemClickListener {
   /**
    * Create a new client and connect
    */
+  @Deprecated
   private void createAndConnect()
   {
     Intent createConnection;
@@ -269,7 +270,7 @@ public class Listener implements OnMenuItemClickListener {
     createConnection = new Intent();
     createConnection.setClassName(
         clientConnections.getApplicationContext(),
-        "org.eclipse.paho.android.service.sample.NewConnection");
+        "org.eclipse.paho.android.service.sample.NewConnectionActivity");
 
     clientConnections.startActivityForResult(createConnection,
         ActivityConstants.connect);

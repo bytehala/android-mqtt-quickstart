@@ -16,6 +16,8 @@ import org.eclipse.paho.android.service.sample.R;
 import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import org.eclipse.paho.android.service.sample.Connection.ConnectionStatus;
@@ -85,7 +87,7 @@ public class MqttCallbackHandler implements MqttCallback {
     args[1] = topic+";qos:"+message.getQos()+";retained:"+message.isRetained();
 
     //get the string from strings.xml and format
-    String messageString = context.getString(R.string.messageRecieved, (Object[]) args);
+    @SuppressLint("StringFormatMatches") String messageString = context.getString(R.string.messageRecieved, (Object[]) args);
 
     //create intent to start activity
     Intent intent = new Intent();

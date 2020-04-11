@@ -19,11 +19,12 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import org.eclipse.paho.android.service.sample.R;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
@@ -37,7 +38,7 @@ import android.widget.Toast;
  * Handles collection of user information to create a new MQTT Client
  *
  */
-public class NewConnection extends Activity {
+public class NewConnectionActivity extends AppCompatActivity {
 
   /** {@link Bundle} which holds data from activities launched from this activity **/
   private Bundle result = null;
@@ -107,9 +108,9 @@ public class NewConnection extends Activity {
   private class Listener implements OnMenuItemClickListener {
 
     //used for starting activities 
-    private NewConnection newConnection = null;
+    private NewConnectionActivity newConnection = null;
 
-    public Listener(NewConnection newConnection)
+    public Listener(NewConnectionActivity newConnection)
     {
       this.newConnection = newConnection;
     }
