@@ -128,11 +128,11 @@ public class AdvancedActivity extends AppCompatActivity {
 	protected Dialog onCreateDialog(int id) {
 		if (id == openfileDialogId) {
 			Map<String, Integer> images = new HashMap<String, Integer>();
-			images.put(OpenFileDialog.sRoot, R.drawable.ic_launcher);
-			images.put(OpenFileDialog.sParent, R.drawable.ic_launcher);
-			images.put(OpenFileDialog.sFolder, R.drawable.ic_launcher);
-			images.put("bks", R.drawable.ic_launcher);
-			images.put(OpenFileDialog.sEmpty, R.drawable.ic_launcher);
+			images.put(OpenFileDialog.sRoot, R.mipmap.ic_launcher);
+			images.put(OpenFileDialog.sParent, R.mipmap.ic_launcher);
+			images.put(OpenFileDialog.sFolder, R.mipmap.ic_launcher);
+			images.put("bks", R.mipmap.ic_launcher);
+			images.put(OpenFileDialog.sEmpty, R.mipmap.ic_launcher);
 			Dialog dialog = OpenFileDialog.createDialog(id, this, "openfile",
 					new CallbackBundle() {
 						@Override
