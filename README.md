@@ -53,4 +53,9 @@ Eclipse might update that someday, but as of now, we are unable to use the Andro
 The eclipse sources can be found at:
 https://github.com/eclipse/paho.mqtt.java
 
-(Honestly, when I made an MQTT app for a client, I just built on top of this sample project.)
+Honestly, when I made an MQTT app for a client, I just built on top of this sample project.
+
+# Word of Warning
+This app was made in 2015-2016, and is a demo of how to use the Eclipse MQTT Libraries, not how to code in Android.
+
+Architecture components are a thing now, and I strongly advise the use of ViewModel and LifecycleHook.
