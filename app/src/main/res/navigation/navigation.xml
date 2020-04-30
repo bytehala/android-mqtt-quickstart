@@ -13,11 +13,19 @@
 
         <action
             android:id="@+id/action_new_connection"
-            app:destination="@id/newConnectionActivity" />
+            app:destination="@id/newConnection_dest" />
     </fragment>
+
+    <fragment
+        android:id="@+id/newConnection_dest"
+        android:name="io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionFragment"
+        android:label="newConnectionFragment"
+        tools:layout="@layout/old_activity_new_connection"
+        />
 
     <activity
         android:id="@+id/newConnectionActivity"
         android:name="io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity"
-        android:label="NewConnectionActivity" />
+        android:label="NewConnectionActivity"
+        tools:layout="@layout/old_activity_new_connection"/>
 </navigation>
