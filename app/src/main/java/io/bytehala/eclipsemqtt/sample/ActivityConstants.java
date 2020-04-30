@@ -99,6 +99,6 @@ public final class ActivityConstants {
   /** Space String Literal **/
   public static final String space = " ";
   /** Empty String for comparisons **/
-  public static final String empty = new String();
+  public static final String empty = "";
 
 }

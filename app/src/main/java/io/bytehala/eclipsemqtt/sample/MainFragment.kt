@@ -1,12 +1,14 @@
 package io.bytehala.eclipsemqtt.sample
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import kotlinx.android.synthetic.main.old_activity_main.*
 import java.util.*
 
@@ -17,8 +19,16 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val safeArgs: MainFragmentArgs by navArgs()
+        val result = safeArgs.result
+        
+//        Log.d("TEST", "Result " + result?.getInt(ActivityConstants.keepalive))
+
         return inflater.inflate(R.layout.old_activity_main, container, false)
     }
+
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

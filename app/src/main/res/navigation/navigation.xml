@@ -11,6 +11,12 @@
         android:label="old_activity_main"
         tools:layout="@layout/old_activity_main" >
 
+        <argument
+            android:name="result"
+            app:argType="android.os.Bundle"
+            app:nullable="true"
+            android:defaultValue="@null"/>
+
         <action
             android:id="@+id/action_new_connection"
             app:destination="@id/newConnection_dest" />
@@ -24,7 +30,9 @@
 
         <action
             android:id="@+id/action_connect"
+            app:destination="@id/mainActivity_dest"
             app:popUpTo="@id/mainActivity_dest"
+            app:popUpToInclusive="true"
         />
     </fragment>
 
