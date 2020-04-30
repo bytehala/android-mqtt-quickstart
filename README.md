@@ -47,8 +47,9 @@ All you need is an MQTT broker.
 This app is just piggybacking on HiveMQ's free broker.
 
 Take note of the dependencies in this project.
-`org.eclipse.paho.android.service` and `org.eclipse.paho.client.mqttv3` depend on the old android-support-v4, specifically the Fragment support class.
-Eclipse might update that someday, but as of now, we are unable to use the AndroidX version.
+`org.eclipse.paho.android.service` and `org.eclipse.paho.client.mqttv3` depend on the old android-support-v4, specifically the LocalBroadcastManager class.
+
+Maybe we can migrate to mqttv5 using the Java library.
 
 The eclipse sources can be found at:
 https://github.com/eclipse/paho.mqtt.java
