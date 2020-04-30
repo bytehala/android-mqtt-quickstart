@@ -6,7 +6,7 @@ Android Studio port of the Eclipse paho MQTT sample project.
 ## Environment Tested On
 1. OpenJDK Java 11 by Amazon (sdkman 11.0.6-amzn)
 2. Pixel XL API 29 emulator
-3. Android Studio 3.6.2
+3. Android Studio 3.6.3
 
 I am maintaining this on my own, and as such am unable to test on multiple devices and environments.
 
