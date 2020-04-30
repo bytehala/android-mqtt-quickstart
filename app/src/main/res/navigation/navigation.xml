@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/mainActivity_dest">
+
+    <fragment
+        android:id="@+id/mainActivity_dest"
+        android:name="io.bytehala.eclipsemqtt.sample.MainFragment"
+        android:label="old_activity_main"
+        tools:layout="@layout/old_activity_main" >
+
+        <action
+            android:id="@+id/action_new_connection"
+            app:destination="@id/newConnectionActivity" />
+    </fragment>
+
+    <activity
+        android:id="@+id/newConnectionActivity"
+        android:name="io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity"
+        android:label="NewConnectionActivity" />
+</navigation>

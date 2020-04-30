@@ -19,13 +19,21 @@
         <service android:name="org.eclipse.paho.android.service.MqttService" >
         </service>
 
-        <activity android:name=".MainActivity" >
+        <activity android:name=".NewMainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+<!--        <activity android:name=".MainActivity" >-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
 
         <!-- New Connection Activity -->
         <activity

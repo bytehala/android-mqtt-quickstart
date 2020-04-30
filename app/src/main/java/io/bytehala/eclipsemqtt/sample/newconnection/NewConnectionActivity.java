@@ -101,6 +101,7 @@ public class NewConnectionActivity extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode,
       Intent intent) {
 
+    super.onActivityResult(requestCode, resultCode, intent);
     if (resultCode == RESULT_CANCELED) {
       return;
     }
