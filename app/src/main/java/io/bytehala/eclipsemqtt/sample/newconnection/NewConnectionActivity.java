@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package io.bytehala.eclipsemqtt.sample;
+package io.bytehala.eclipsemqtt.sample.newconnection;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +34,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import io.bytehala.eclipsemqtt.sample.ActivityConstants;
+import io.bytehala.eclipsemqtt.sample.Notify;
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * Handles collection of user information to create a new MQTT Client
@@ -138,7 +142,7 @@ public class NewConnectionActivity extends AppCompatActivity {
           case R.id.advanced :
             //start the advanced options activity
             dataBundle.setClassName(newConnection,
-                "io.bytehala.eclipsemqtt.sample.AdvancedActivity");
+                "io.bytehala.eclipsemqtt.sample.newconnection.AdvancedActivity");
             newConnection.startActivityForResult(dataBundle,
                 ActivityConstants.advancedConnect);
 

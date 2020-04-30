@@ -271,7 +271,7 @@ public class Listener implements OnMenuItemClickListener {
     createConnection = new Intent();
     createConnection.setClassName(
         clientConnections.getApplicationContext(),
-        "io.bytehala.eclipsemqtt.sample.NewConnectionActivity");
+        "io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity");
 
     clientConnections.startActivityForResult(createConnection,
         ActivityConstants.connect);

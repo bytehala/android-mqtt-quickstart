@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package io.bytehala.eclipsemqtt.sample;
+package io.bytehala.eclipsemqtt.sample.newconnection;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +30,11 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NavUtils;
+
+import io.bytehala.eclipsemqtt.sample.ActivityConstants;
+import io.bytehala.eclipsemqtt.sample.CallbackBundle;
+import io.bytehala.eclipsemqtt.sample.OpenFileDialog;
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * AdvancedActivity connection options activity
@@ -204,7 +209,7 @@ public class AdvancedActivity extends AppCompatActivity {
     private void lastWill() {
 
       Intent intent = new Intent();
-      intent.setClassName(advanced, "io.bytehala.eclipsemqtt.sample.LastWillActivity");
+      intent.setClassName(advanced, "io.bytehala.eclipsemqtt.sample.newconnection.LastWillActivity");
       advanced.startActivityForResult(intent, ActivityConstants.lastWill);
 
     }

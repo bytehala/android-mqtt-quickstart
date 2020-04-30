@@ -29,20 +29,20 @@
 
         <!-- New Connection Activity -->
         <activity
-            android:name=".NewConnectionActivity"
+            android:name=".newconnection.NewConnectionActivity"
             android:label="@string/title_activity_new_connection" >
         </activity>
 
 
         <!-- AdvancedActivity Options Screen -->
         <activity
-            android:name=".AdvancedActivity"
+            android:name=".newconnection.AdvancedActivity"
             android:label="@string/title_activity_advanced" >
         </activity>
 
         <!-- Last Will Activity -->
         <activity
-            android:name=".LastWillActivity"
+            android:name=".newconnection.LastWillActivity"
             android:label="@string/title_activity_last_will" >
         </activity>
         

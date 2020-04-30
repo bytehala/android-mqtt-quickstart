@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package io.bytehala.eclipsemqtt.sample;
+package io.bytehala.eclipsemqtt.sample.newconnection;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -23,6 +23,9 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import io.bytehala.eclipsemqtt.sample.ActivityConstants;
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * Activity for setting the last will message for the client

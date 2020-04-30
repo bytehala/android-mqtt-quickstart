@@ -33,6 +33,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     /**
@@ -136,7 +138,7 @@ public class MainActivity extends AppCompatActivity {
         createConnection = new Intent();
         createConnection.setClassName(
                 clientConnections.getApplicationContext(),
-                "io.bytehala.eclipsemqtt.sample.NewConnectionActivity");
+                "io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity");
 
         clientConnections.startActivityForResult(createConnection,
                 ActivityConstants.connect);

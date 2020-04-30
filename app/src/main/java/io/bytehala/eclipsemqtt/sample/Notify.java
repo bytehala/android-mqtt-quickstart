@@ -27,7 +27,7 @@ import androidx.core.app.NotificationCompat;
  * Provides static methods for creating and showing notifications to the user.
  *
  */
-public class Notify {
+public final class Notify {
 
   /** Message ID Counter **/
   private static int MessageID = 0;
@@ -39,7 +39,7 @@ public class Notify {
    * @param intent The intent which will start the activity when the user clicks the notification
    * @param notificationTitle The resource reference to the notification title
    */
-  static void notifcation(Context context, String messageString, Intent intent, int notificationTitle) {
+  public static void notifcation(Context context, String messageString, Intent intent, int notificationTitle) {
 
     //Get the notification manage which we will use to display the notification
     String ns = Context.NOTIFICATION_SERVICE;
@@ -82,7 +82,7 @@ public class Notify {
    * @param text The text the toast should display
    * @param duration The amount of time for the toast to appear to the user
    */
-  static void toast(Context context, CharSequence text, int duration) {
+  public static void toast(Context context, CharSequence text, int duration) {
     Toast toast = Toast.makeText(context, text, duration);
     toast.show();
   }
