@@ -85,7 +85,7 @@ public class ClientConnections extends ListActivity {
     connectionList.setOnItemLongClickListener(new LongClickItemListener());
     connectionList.setTextFilterEnabled(true);
     arrayAdapter = new ArrayAdapter<Connection>(this,
-        R.layout.connection_text_view);
+        R.layout.old_connection_text_view);
     setListAdapter(arrayAdapter);
 
     // get all the available connections

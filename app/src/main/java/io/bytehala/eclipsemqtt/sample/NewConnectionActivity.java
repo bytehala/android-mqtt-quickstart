@@ -50,7 +50,7 @@ public class NewConnectionActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_new_connection);
+    setContentView(R.layout.old_activity_new_connection);
 
     AppCompatButton fab = findViewById(R.id.connectButton);
     fab.setOnClickListener(view -> doConnectAction());

@@ -92,7 +92,7 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
 
     clientHandle = getIntent().getStringExtra("handle");
 
-    setContentView(R.layout.activity_connection_details);
+    setContentView(R.layout.old_activity_connection_details);
     // Create the adapter that will return a fragment for each of the pages
     sectionsPagerAdapter = new SectionsPagerAdapter(
         getSupportFragmentManager());

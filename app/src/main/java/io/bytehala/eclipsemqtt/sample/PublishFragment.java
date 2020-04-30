@@ -32,7 +32,7 @@ public class PublishFragment extends Fragment {
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
 
-    return LayoutInflater.from(getActivity()).inflate(R.layout.activity_publish, null);
+    return LayoutInflater.from(getActivity()).inflate(R.layout.old_activity_publish, null);
 
   }
 

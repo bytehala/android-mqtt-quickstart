@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.client_connections);
+        setContentView(R.layout.old_client_connections);
 
         listView = findViewById(R.id.list);
         listView.setOnItemLongClickListener(new MainActivity.LongClickItemListener());
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
         fab.setOnClickListener(view -> createAndConnect());
 
-        arrayAdapter = new ArrayAdapter<>(this, R.layout.connection_text_view);
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.old_connection_text_view);
         listView.setAdapter(arrayAdapter);
 
         // get all available connections

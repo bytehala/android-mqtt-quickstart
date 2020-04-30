@@ -54,7 +54,7 @@ public class AdvancedActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_advanced);
+    setContentView(R.layout.old_activity_advanced);
     
     ((Button) findViewById(R.id.sslKeyBut)).setOnClickListener(new OnClickListener(){
 

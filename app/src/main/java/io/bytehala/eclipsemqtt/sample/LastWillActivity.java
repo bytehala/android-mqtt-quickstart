@@ -41,7 +41,7 @@ public class LastWillActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_last_will);
+    setContentView(R.layout.old_activity_last_will);
 
   }
 

@@ -17,7 +17,6 @@ import android.text.Spanned;
 import android.widget.ArrayAdapter;
 
 import androidx.fragment.app.ListFragment;
-import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * This fragment displays the history information for a client
@@ -45,7 +44,7 @@ public class HistoryFragment extends ListFragment {
     Spanned[] history = connection.history();
 
     //Initialise the arrayAdapter, view and add data
-    arrayAdapter = new ArrayAdapter<Spanned>(getActivity(), R.layout.list_view_text_view);
+    arrayAdapter = new ArrayAdapter<Spanned>(getActivity(), R.layout.old_list_view_text_view);
 
     arrayAdapter.addAll(history);
     setListAdapter(arrayAdapter);
