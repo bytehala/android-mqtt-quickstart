@@ -5,8 +5,6 @@ import android.app.ListActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.ActionMode;
 import android.view.Menu;
@@ -16,6 +14,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
@@ -66,38 +67,18 @@ public class MainActivity extends AppCompatActivity {
         listView.setOnItemLongClickListener(new MainActivity.LongClickItemListener());
         listView.setTextFilterEnabled(true);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemClickListener((listView, view, position, id) -> {
 
-//            protected void onListItemClick(ListView listView, View view, int position,
-//                                           long id) {
-//                super.onListItemClick(listView, view, position, id);
-//
-//                if (!contextualActionBarActive) {
-//                    Connection c = arrayAdapter.getItem(position);
-//
-//                    // start the connectionDetails activity to display the details about the
-//                    // selected connection
-//                    Intent intent = new Intent();
-//                    intent.setClassName(getApplicationContext().getPackageName(),
-//                            "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
-//                    intent.putExtra("handle", c.handle());
-//                    startActivity(intent);
-//                }
+            if (!contextualActionBarActive) {
+                Connection c = arrayAdapter.getItem(position);
 
-            @Override
-            public void onItemClick(AdapterView<?> listView, View view, int position, long id) {
-
-                if (!contextualActionBarActive) {
-                    Connection c = arrayAdapter.getItem(position);
-
-                    // start the connectionDetails activity to display the details about the
-                    // selected connection
-                    Intent intent = new Intent();
-                    intent.setClassName(getApplicationContext().getPackageName(),
-                            "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
-                    intent.putExtra("handle", c.handle());
-                    startActivity(intent);
-                }
+                // start the connectionDetails activity to display the details about the
+                // selected connection
+                Intent intent = new Intent();
+                intent.setClassName(getApplicationContext().getPackageName(),
+                        "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
+                intent.putExtra("handle", c.handle());
+                startActivity(intent);
             }
         });
 

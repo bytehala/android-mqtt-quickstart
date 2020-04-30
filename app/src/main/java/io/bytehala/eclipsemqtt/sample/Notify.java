@@ -19,8 +19,9 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.NotificationCompat.Builder;
 import android.widget.Toast;
+
+import androidx.core.app.NotificationCompat;
 
 /**
  * Provides static methods for creating and showing notifications to the user.
@@ -59,7 +60,7 @@ public class Notify {
         ActivityConstants.showHistory, intent, 0);
 
     //build the notification
-    Builder notificationCompat = new Builder(context);
+    NotificationCompat.Builder notificationCompat = new NotificationCompat.Builder(context);
     notificationCompat.setAutoCancel(true)
         .setContentTitle(contentTitle)
         .setContentIntent(pendingIntent)

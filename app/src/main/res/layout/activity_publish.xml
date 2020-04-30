@@ -126,7 +126,7 @@ IBM Corp.
 
     </LinearLayout>
 
-    <android.support.v7.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/publishButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

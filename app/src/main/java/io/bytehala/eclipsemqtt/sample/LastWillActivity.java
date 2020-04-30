@@ -15,13 +15,14 @@ package io.bytehala.eclipsemqtt.sample;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Activity for setting the last will message for the client
