@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 29 // Remember to update travis.yml
     buildToolsVersion '28.0.3'
 
     defaultConfig {
