@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,7 +24,7 @@ class MainFragment : Fragment() {
         val safeArgs: MainFragmentArgs by navArgs()
         val result = safeArgs.result
         
-//        Log.d("TEST", "Result " + result?.getInt(ActivityConstants.keepalive))
+        Log.d("TEST", "Result " + result?.getString(ActivityConstants.server))
 
         return inflater.inflate(R.layout.old_activity_main, container, false)
     }
@@ -61,4 +62,15 @@ class MainFragment : Fragment() {
         }
     }
 
+}
+
+
+fun Fragment.addBackPressedCallback(callback: () -> Unit): OnBackPressedCallback {
+    val result = object: OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            callback()
+        }
+    }
+    requireActivity().onBackPressedDispatcher.addCallback(this, result)
+    return result
 }
