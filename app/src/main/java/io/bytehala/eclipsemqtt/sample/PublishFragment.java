@@ -25,9 +25,6 @@ import androidx.fragment.app.Fragment;
  */
 public class PublishFragment extends Fragment {
 
-  /**
-   * @see android.support.v4.app.Fragment#onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)
-   */
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {

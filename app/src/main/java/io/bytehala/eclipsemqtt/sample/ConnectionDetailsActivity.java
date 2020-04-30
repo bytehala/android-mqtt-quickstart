@@ -83,9 +83,6 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
    **/
   private ChangeListener changeListener = null;
 
-  /**
-   * @see android.support.v4.app.FragmentActivity#onCreate(android.os.Bundle)
-   */
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -280,17 +277,11 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
 
     }
 
-    /**
-     * @see android.support.v4.app.FragmentPagerAdapter#getItem(int)
-     */
     @Override
     public Fragment getItem(int position) {
       return fragments.get(position);
     }
 
-    /**
-     * @see android.support.v4.view.PagerAdapter#getCount()
-     */
     @Override
     public int getCount() {
       return fragments.size();

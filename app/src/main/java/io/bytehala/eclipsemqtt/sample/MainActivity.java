@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.eclipse.paho.android.service.MqttAndroidClient;
@@ -27,7 +28,11 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -94,9 +99,11 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Connection> connections = Connections.getInstance(this)
                 .getConnections();
 
+
         if (connections != null) {
-            for (String s : connections.keySet())
-            {
+            List<String> cons = new ArrayList<>(connections.keySet());
+            Collections.reverse(cons);
+            for (String s : cons) {
                 arrayAdapter.add(connections.get(s));
             }
         }
@@ -109,12 +116,10 @@ public class MainActivity extends AppCompatActivity {
         MenuItem.OnMenuItemClickListener menuItemClickListener = new Listener(this);
 
         //load the correct menu depending on the status of logging
-        if (Listener.logging)
-        {
+        if (Listener.logging) {
             getMenuInflater().inflate(R.menu.activity_connections_logging, menu);
             menu.findItem(R.id.endLogging).setOnMenuItemClickListener(menuItemClickListener);
-        }
-        else {
+        } else {
             getMenuInflater().inflate(R.menu.activity_connections, menu);
             menu.findItem(R.id.startLogging).setOnMenuItemClickListener(menuItemClickListener);
         }
@@ -125,8 +130,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    private void createAndConnect()
-    {
+    private void createAndConnect() {
         Intent createConnection;
 
         //start a new activity to gather information for a new connection
@@ -140,11 +144,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * @see ListActivity#onActivityResult(int,int,Intent)
+     * @see ListActivity#onActivityResult(int, int, Intent)
      */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
+        super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_CANCELED) {
             return;
         }
@@ -165,9 +169,9 @@ public class MainActivity extends AppCompatActivity {
         Map<String, Connection> connections = Connections.getInstance(this).getConnections();
 
         //Register receivers again
-        for (Connection connection : connections.values()){
+        for (Connection connection : connections.values()) {
             connection.getClient().registerResources(this);
-            connection.getClient().setCallback(new MqttCallbackHandler(this, connection.getClient().getServerURI()+connection.getClient().getClientId()));
+            connection.getClient().setCallback(new MqttCallbackHandler(this, connection.getClient().getServerURI() + connection.getClient().getClientId()));
         }
     }
 
@@ -176,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
 
         Map<String, Connection> connections = Connections.getInstance(this).getConnections();
 
-        for (Connection connection : connections.values()){
+        for (Connection connection : connections.values()) {
             connection.registerChangeListener(changeListener);
             connection.getClient().unregisterResources();
         }
@@ -219,8 +223,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("SSLConnection", "Doing an SSL Connect");
             uri = "ssl://";
 
-        }
-        else {
+        } else {
             uri = "tcp://";
         }
 
@@ -229,10 +232,9 @@ public class MainActivity extends AppCompatActivity {
         MqttAndroidClient client;
         client = Connections.getInstance(this).createClient(this, uri, clientId);
 
-        if (ssl){
+        if (ssl) {
             try {
-                if(ssl_key != null && !ssl_key.equalsIgnoreCase(""))
-                {
+                if (ssl_key != null && !ssl_key.equalsIgnoreCase("")) {
                     FileInputStream key = new FileInputStream(ssl_key);
                     conOpt.setSocketFactory(client.getSSLSocketFactory(key,
                             "mqtttest"));
@@ -267,7 +269,7 @@ public class MainActivity extends AppCompatActivity {
 
         Connection connection = new Connection(clientHandle, clientId, server, port,
                 this, client, ssl);
-        arrayAdapter.add(connection);
+        arrayAdapter.insert(connection, 0);
 
         connection.registerChangeListener(changeListener);
         // connect client
@@ -297,8 +299,7 @@ public class MainActivity extends AppCompatActivity {
             try {
                 conOpt.setWill(topic, message.getBytes(), qos.intValue(),
                         retained.booleanValue());
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.e(this.getClass().getCanonicalName(), "Exception Occured", e);
                 doConnect = false;
                 callback.onFailure(null, e);
@@ -315,8 +316,7 @@ public class MainActivity extends AppCompatActivity {
         if (doConnect) {
             try {
                 client.connect(conOpt, null, callback);
-            }
-            catch (MqttException e) {
+            } catch (MqttException e) {
                 Log.e(this.getClass().getCanonicalName(),
                         "MqttException Occured", e);
             }
@@ -327,15 +327,20 @@ public class MainActivity extends AppCompatActivity {
     /**
      * <code>LongClickItemListener</code> deals with enabling and disabling the contextual action bar and
      * processing the actions selected.
-     *
      */
     private class LongClickItemListener implements AdapterView.OnItemLongClickListener, ActionMode.Callback, DialogInterface.OnClickListener {
 
-        /** The index of the item selected, or -1 if an item is not selected **/
+        /**
+         * The index of the item selected, or -1 if an item is not selected
+         **/
         private int selected = -1;
-        /** The view of the item selected **/
+        /**
+         * The view of the item selected
+         **/
         private View selectedView = null;
-        /** The connection the view is representing **/
+        /**
+         * The connection the view is representing
+         **/
         private Connection connection = null;
 
         /* (non-Javadoc)
@@ -358,11 +363,11 @@ public class MainActivity extends AppCompatActivity {
         public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
             selectedView.setBackgroundColor(getResources().getColor(android.R.color.white));
             switch (item.getItemId()) {
-                case R.id.delete :
+                case R.id.delete:
                     delete();
                     mode.finish();
                     return true;
-                default :
+                default:
                     return false;
             }
         }
@@ -399,8 +404,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Deletes the connection, disconnecting if required.
          */
-        private void delete()
-        {
+        private void delete() {
             connection = arrayAdapter.getItem(selected);
             if (connection.isConnectedOrConnecting()) {
 
@@ -417,8 +421,7 @@ public class MainActivity extends AppCompatActivity {
                         })
                         .setPositiveButton(R.string.continueBtn, this)
                         .show();
-            }
-            else {
+            } else {
                 arrayAdapter.remove(connection);
                 Connections.getInstance(clientConnections).removeConnection(connection);
             }
@@ -430,8 +433,7 @@ public class MainActivity extends AppCompatActivity {
             //user pressed continue disconnect client and delete
             try {
                 connection.getClient().disconnect();
-            }
-            catch (MqttException e) {
+            } catch (MqttException e) {
                 e.printStackTrace();
             }
             arrayAdapter.remove(connection);
@@ -443,8 +445,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * This class ensures that the user interface is updated as the Connection objects change their states
-     *
-     *
      */
     private class ChangeListener implements PropertyChangeListener {
 
