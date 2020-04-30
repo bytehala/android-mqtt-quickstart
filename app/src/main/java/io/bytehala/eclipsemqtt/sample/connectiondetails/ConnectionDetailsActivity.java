@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package io.bytehala.eclipsemqtt.sample;
+package io.bytehala.eclipsemqtt.sample.connectiondetails;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -34,6 +34,13 @@ import androidx.viewpager.widget.ViewPager;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttSecurityException;
+
+import io.bytehala.eclipsemqtt.sample.ActionListener;
+import io.bytehala.eclipsemqtt.sample.ActivityConstants;
+import io.bytehala.eclipsemqtt.sample.Connection;
+import io.bytehala.eclipsemqtt.sample.Connections;
+import io.bytehala.eclipsemqtt.sample.Listener;
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * The connection details activity operates the fragments that make up the

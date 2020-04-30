@@ -33,10 +33,12 @@ import android.widget.RadioGroup;
 
 import io.bytehala.eclipsemqtt.sample.ActionListener.Action;
 import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
+import io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity;
+
 import org.eclipse.paho.android.service.MqttAndroidClient;
 
 /**
- * Deals with actions performed in the {@link ClientConnections} activity
+ * Deals with actions performed in the {@link MainActivity} activity
  * and the {@link ConnectionDetailsActivity} activity and associated fragments
  *
  */
@@ -47,7 +49,7 @@ public class Listener implements OnMenuItemClickListener {
 
   /** {@link ConnectionDetailsActivity} reference used to perform some actions**/
   private ConnectionDetailsActivity connectionDetails = null;
-  /** {@link ClientConnections} reference used to perform some actions**/
+  /** {@link MainActivity} reference used to perform some actions**/
   private Activity clientConnections = null;
   /** {@link Context} used to load and format strings **/
   private Context context = null;

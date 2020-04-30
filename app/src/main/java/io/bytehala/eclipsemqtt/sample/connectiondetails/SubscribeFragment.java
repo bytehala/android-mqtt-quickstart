@@ -10,7 +10,7 @@
  * and the Eclipse Distribution License is available at 
  *   http://www.eclipse.org/org/documents/edl-v10.php.
  */
-package io.bytehala.eclipsemqtt.sample;
+package io.bytehala.eclipsemqtt.sample.connectiondetails;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+
+import io.bytehala.eclipsemqtt.sample.R;
 
 /**
  * Fragment for the subscribe pane for the client

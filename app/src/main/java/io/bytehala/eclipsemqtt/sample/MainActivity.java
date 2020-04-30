@@ -32,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.old_client_connections);
+        setContentView(R.layout.old_activity_main);
 
         listView = findViewById(R.id.list);
         listView.setOnItemLongClickListener(new MainActivity.LongClickItemListener());
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
                 // selected connection
                 Intent intent = new Intent();
                 intent.setClassName(getApplicationContext().getPackageName(),
-                        "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
+                        "io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity");
                 intent.putExtra("handle", c.handle());
                 startActivity(intent);
             }

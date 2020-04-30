@@ -64,7 +64,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
       //build intent
       Intent intent = new Intent();
-      intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
+      intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity");
       intent.putExtra("handle", clientHandle);
 
       //notify the user
@@ -91,7 +91,7 @@ public class MqttCallbackHandler implements MqttCallback {
 
     //create intent to start activity
     Intent intent = new Intent();
-    intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.ConnectionDetailsActivity");
+    intent.setClassName(context, "io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity");
     intent.putExtra("handle", clientHandle);
 
     //format string args
