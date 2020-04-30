@@ -106,12 +106,11 @@ IBM Corp.
             android:text="@string/empty" />
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/connectButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_below="@id/cleanSessionGroup"
         android:text="@string/connect" />
 

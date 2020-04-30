@@ -19,12 +19,12 @@ import android.view.MenuItem;
 import android.view.MenuItem.OnMenuItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.app.NavUtils;
 
 import java.io.BufferedReader;
@@ -56,7 +56,7 @@ public class NewConnectionActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.old_activity_new_connection);
 
-    AppCompatButton fab = findViewById(R.id.connectButton);
+    Button fab = findViewById(R.id.connectButton);
     fab.setOnClickListener(view -> doConnectAction());
 
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
@@ -75,7 +75,7 @@ public class NewConnectionActivity extends AppCompatActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.activity_new_connection, menu);
     OnMenuItemClickListener listener = new Listener(this);
-    menu.findItem(R.id.connectAction).setOnMenuItemClickListener(listener);
+    menu.findItem(R.id.connectActionDeprecated).setOnMenuItemClickListener(listener);
     menu.findItem(R.id.advanced).setOnMenuItemClickListener(listener);
 
     return true;
@@ -137,7 +137,7 @@ public class NewConnectionActivity extends AppCompatActivity {
         Intent dataBundle = new Intent();
 
         switch (id) {
-          case R.id.connectAction :
+          case R.id.connectActionDeprecated:
             doConnectAction();
             break;
           case R.id.advanced :

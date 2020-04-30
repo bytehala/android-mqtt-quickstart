@@ -13,7 +13,7 @@ IBM Corp.
     xmlns:compat="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/connectAction"
+        android:id="@+id/connectActionDeprecated"
         android:title="@string/connect"
         android:visible="false"
         compat:showAsAction="always" />

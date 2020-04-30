@@ -87,7 +87,7 @@ IBM Corp.
 
     </LinearLayout>
 
-    <androidx.appcompat.widget.AppCompatButton
+    <Button
         android:id="@+id/subscribeButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="match_parent"
