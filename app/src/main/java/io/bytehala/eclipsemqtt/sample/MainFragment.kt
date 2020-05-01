@@ -26,32 +26,13 @@ class MainFragment : Fragment() {
 
     val changeListener = ChangeListener()
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-
-
-
-        return inflater.inflate(R.layout.old_activity_main, container, false)
-    }
-
-
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        addConnectionFab.setOnClickListener {
-            findNavController().navigate(R.id.action_new_connection)
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
 
         arrayAdapter = ArrayAdapter<Connection>(
             requireContext(),
             R.layout.old_connection_text_view
         )
-
-        list.adapter = arrayAdapter
 
         // get all available connections
         val connections =
@@ -74,6 +55,35 @@ class MainFragment : Fragment() {
         Log.d("TEST", "Result " + result?.getString(ActivityConstants.server))
 
         result?.let {connectAction(result)}
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.old_activity_main, container, false)
+    }
+
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        addConnectionFab.setOnClickListener {
+            findNavController().navigate(R.id.action_new_connection)
+        }
+
+        list.adapter = arrayAdapter
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun connectAction(data: Bundle) {
@@ -210,15 +220,4 @@ class MainFragment : Fragment() {
         }
     }
 
-}
-
-
-fun Fragment.addBackPressedCallback(callback: () -> Unit): OnBackPressedCallback {
-    val result = object: OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-            callback()
-        }
-    }
-    requireActivity().onBackPressedDispatcher.addCallback(this, result)
-    return result
 }

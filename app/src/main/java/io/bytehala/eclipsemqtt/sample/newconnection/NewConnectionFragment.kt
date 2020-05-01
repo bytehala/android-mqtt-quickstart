@@ -10,19 +10,9 @@ import androidx.navigation.fragment.findNavController
 import io.bytehala.eclipsemqtt.sample.ActivityConstants
 import io.bytehala.eclipsemqtt.sample.Notify
 import io.bytehala.eclipsemqtt.sample.R
-import io.bytehala.eclipsemqtt.sample.addBackPressedCallback
 import kotlinx.android.synthetic.main.old_activity_new_connection.*
 
 class NewConnectionFragment : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val callback = addBackPressedCallback {
-            val actionConnect = NewConnectionFragmentDirections.actionConnect()
-            findNavController().navigate(actionConnect)
-        }
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
