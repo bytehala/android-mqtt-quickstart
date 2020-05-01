@@ -56,15 +56,15 @@ public class NewConnectionActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.old_activity_new_connection);
 
-    Button fab = findViewById(R.id.connectButton);
-    fab.setOnClickListener(view -> doConnectAction());
+    Button connectButton = findViewById(R.id.connectButton);
+    connectButton.setOnClickListener(view -> doConnectAction());
 
     ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
     adapter.addAll(readHosts());
     AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.serverURI);
     textView.setAdapter(adapter);
 
-    //load auto compete options
+    //TODO load auto compete options
 
   }
 

@@ -115,6 +115,8 @@ public class Listener implements OnMenuItemClickListener {
       case R.id.endLogging :
         disablePahoLogging();
         break;
+      case R.id.advanced:
+        break;
     }
 
     return false;

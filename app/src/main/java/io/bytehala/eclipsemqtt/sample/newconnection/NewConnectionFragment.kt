@@ -1,12 +1,12 @@
 package io.bytehala.eclipsemqtt.sample.newconnection
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.bytehala.eclipsemqtt.sample.ActivityConstants
-import io.bytehala.eclipsemqtt.sample.Listener
 import io.bytehala.eclipsemqtt.sample.Notify
 import io.bytehala.eclipsemqtt.sample.R
 import kotlinx.android.synthetic.main.old_activity_new_connection.*
@@ -82,7 +82,20 @@ class NewConnectionFragment : Fragment() {
     return true;
   }
          */
-        val listener = Listener(requireActivity());
-        menu.findItem(R.id.advanced).setOnMenuItemClickListener(listener);
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        //start the advanced options activity
+        val dataBundle = Intent()
+        dataBundle.setClassName(
+            requireContext(),
+            "io.bytehala.eclipsemqtt.sample.newconnection.AdvancedActivity"
+        )
+        startActivityForResult(
+            dataBundle,
+            ActivityConstants.advancedConnect
+        )
+        return super.onOptionsItemSelected(item)
+    }
+
 }
