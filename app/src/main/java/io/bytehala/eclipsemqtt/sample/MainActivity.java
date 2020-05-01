@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView = findViewById(R.id.list);
         listView.setOnItemLongClickListener(new MainActivity.LongClickItemListener());
-        listView.setTextFilterEnabled(true);
+        listView.setTextFilterEnabled(true); // TODO: What's this for?
 
         listView.setOnItemClickListener((listView, view, position, id) -> {
 
@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 intent.setClassName(getApplicationContext().getPackageName(),
                         "io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity");
+                Log.d("TEST", "handle: " +  c.handle());
                 intent.putExtra("handle", c.handle());
                 startActivity(intent);
             }

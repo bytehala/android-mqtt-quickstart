@@ -1,12 +1,12 @@
 package io.bytehala.eclipsemqtt.sample
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,6 +23,8 @@ import java.util.*
 class MainFragment : Fragment() {
 
     lateinit var arrayAdapter: ArrayAdapter<Connection>
+
+    var contextualActionBarActive = false
 
     val changeListener = ChangeListener()
 
@@ -54,7 +56,7 @@ class MainFragment : Fragment() {
 
         Log.d("TEST", "Result " + result?.getString(ActivityConstants.server))
 
-        result?.let {connectAction(result)}
+        result?.let { connectAction(result) }
     }
 
     override fun onCreateView(
@@ -75,6 +77,24 @@ class MainFragment : Fragment() {
         }
 
         list.adapter = arrayAdapter
+
+        list.setOnItemClickListener { parent, view, position, id ->
+            run {
+                if (!contextualActionBarActive) {
+                    val c = arrayAdapter.getItem(position);
+
+                    // start the connectionDetails activity to display the details about the
+                    // selected connection
+                    val intent = Intent()
+                    intent.setClassName(
+                        requireContext().packageName,
+                        "io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity"
+                    );
+                    intent.putExtra("handle", c?.handle());
+                    startActivity(intent);
+                }
+            }
+        }
 
     }
 
@@ -120,21 +140,28 @@ class MainFragment : Fragment() {
             "tcp://$server:$port"
         }
 
-        val client = Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
+        val client =
+            Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
 
         if (ssl) {
             try {
-                if(!ssl_key.isNullOrEmpty()) {
+                if (!ssl_key.isNullOrEmpty()) {
                     val key = FileInputStream(ssl_key)
-                    conOpt.socketFactory = client.getSSLSocketFactory(key,
-                        "mqtttest")
+                    conOpt.socketFactory = client.getSSLSocketFactory(
+                        key,
+                        "mqtttest"
+                    )
                 }
             } catch (e: MqttSecurityException) {
-                Log.e(javaClass.canonicalName,
-                    "MqttException Occured: ", e)
+                Log.e(
+                    javaClass.canonicalName,
+                    "MqttException Occured: ", e
+                )
             } catch (e: FileNotFoundException) {
-                Log.e(javaClass.canonicalName,
-                    "MqttException Occured: SSL Key file not found", e)
+                Log.e(
+                    javaClass.canonicalName,
+                    "MqttException Occured: SSL Key file not found", e
+                )
             }
         }
 
@@ -154,8 +181,10 @@ class MainFragment : Fragment() {
         val timeout = data.getInt(ActivityConstants.timeout)
         val keepalive = data.getInt(ActivityConstants.keepalive)
 
-        val connection = Connection(clientHandle, clientId, server, port,
-            requireContext(), client, ssl)
+        val connection = Connection(
+            clientHandle, clientId, server, port,
+            requireContext(), client, ssl
+        )
         arrayAdapter.insert(connection, 0)
 
         connection.registerChangeListener(changeListener)
@@ -174,7 +203,12 @@ class MainFragment : Fragment() {
             conOpt.password = password?.toCharArray()
         }
 
-        val callback = ActionListener(requireContext(), ActionListener.Action.CONNECT, clientHandle, actionArgs)
+        val callback = ActionListener(
+            requireContext(),
+            ActionListener.Action.CONNECT,
+            clientHandle,
+            actionArgs
+        )
         var doConnect = true
 
         if (message!!.isNotEmpty() || topic!!.isNotEmpty()) {
