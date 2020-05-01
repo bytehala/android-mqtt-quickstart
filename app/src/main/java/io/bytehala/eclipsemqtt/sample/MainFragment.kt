@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -34,6 +35,8 @@ class MainFragment : Fragment() {
             R.layout.old_connection_text_view
         )
 
+
+
         // get all available connections
         val connections =
             Connections.getInstance(requireContext())
@@ -49,12 +52,13 @@ class MainFragment : Fragment() {
             }
         }
 
+
         val safeArgs: MainFragmentArgs by navArgs()
         val result = safeArgs.result
 
-        Log.d("TEST", "Result " + result?.getString(ActivityConstants.server))
+        Log.d("TEST", "Result onCreate" + result?.getString(ActivityConstants.server))
 
-        result?.let { connectAction(result) }
+        result?.let {connectAction(result)}
     }
 
     override fun onCreateView(
@@ -115,37 +119,7 @@ class MainFragment : Fragment() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
 
-        arrayAdapter.notifyDataSetChanged()
-
-        //Recover connections.
-        val connections =
-            Connections.getInstance(requireContext()).connections
-
-        //Register receivers again
-        for (connection in connections.values) {
-            connection.client.registerResources(requireContext())
-            connection.client.setCallback(
-                MqttCallbackHandler(
-                    requireContext(),
-                    connection.client.serverURI + connection.client.clientId
-                )
-            )
-        }
-    }
-
-    override fun onDestroy() {
-        val connections =
-            Connections.getInstance(requireContext()).connections
-
-        for (connection in connections.values) {
-            connection.registerChangeListener(changeListener)
-            connection.client.unregisterResources()
-        }
-        super.onDestroy()
-    }
 
     private fun connectAction(data: Bundle) {
         val conOpt = MqttConnectOptions()
@@ -181,28 +155,21 @@ class MainFragment : Fragment() {
             "tcp://$server:$port"
         }
 
-        val client =
-            Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
+        val client = Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
 
         if (ssl) {
             try {
-                if (!ssl_key.isNullOrEmpty()) {
+                if(!ssl_key.isNullOrEmpty()) {
                     val key = FileInputStream(ssl_key)
-                    conOpt.socketFactory = client.getSSLSocketFactory(
-                        key,
-                        "mqtttest"
-                    )
+                    conOpt.socketFactory = client.getSSLSocketFactory(key,
+                        "mqtttest")
                 }
             } catch (e: MqttSecurityException) {
-                Log.e(
-                    javaClass.canonicalName,
-                    "MqttException Occured: ", e
-                )
+                Log.e(javaClass.canonicalName,
+                    "MqttException Occured: ", e)
             } catch (e: FileNotFoundException) {
-                Log.e(
-                    javaClass.canonicalName,
-                    "MqttException Occured: SSL Key file not found", e
-                )
+                Log.e(javaClass.canonicalName,
+                    "MqttException Occured: SSL Key file not found", e)
             }
         }
 
@@ -222,10 +189,8 @@ class MainFragment : Fragment() {
         val timeout = data.getInt(ActivityConstants.timeout)
         val keepalive = data.getInt(ActivityConstants.keepalive)
 
-        val connection = Connection(
-            clientHandle, clientId, server, port,
-            requireContext(), client, ssl
-        )
+        val connection = Connection(clientHandle, clientId, server, port,
+            requireContext(), client, ssl)
         arrayAdapter.insert(connection, 0)
 
         connection.registerChangeListener(changeListener)
@@ -244,12 +209,7 @@ class MainFragment : Fragment() {
             conOpt.password = password?.toCharArray()
         }
 
-        val callback = ActionListener(
-            requireContext(),
-            ActionListener.Action.CONNECT,
-            clientHandle,
-            actionArgs
-        )
+        val callback = ActionListener(requireContext(), ActionListener.Action.CONNECT, clientHandle, actionArgs)
         var doConnect = true
 
         if (message!!.isNotEmpty() || topic!!.isNotEmpty()) {
