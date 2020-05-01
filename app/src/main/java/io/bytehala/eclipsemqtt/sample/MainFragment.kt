@@ -3,14 +3,11 @@ package io.bytehala.eclipsemqtt.sample
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import io.bytehala.eclipsemqtt.sample.ActivityConstants.action
 import kotlinx.android.synthetic.main.old_activity_main.*
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttException
@@ -65,10 +62,28 @@ class MainFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.old_activity_main, container, false)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
+        val menuItemClickListener: MenuItem.OnMenuItemClickListener =
+            Listener(requireActivity())
+
+        //load the correct menu depending on the status of logging
+        if (Listener.logging) {
+            inflater.inflate(R.menu.activity_connections_logging, menu)
+            menu.findItem(R.id.endLogging).setOnMenuItemClickListener(menuItemClickListener)
+        } else {
+            inflater.inflate(R.menu.activity_connections, menu)
+            menu.findItem(R.id.startLogging).setOnMenuItemClickListener(menuItemClickListener)
+        }
+        menu.findItem(R.id.newConnection).setOnMenuItemClickListener {
+            findNavController().navigate(R.id.action_new_connection)
+            true
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

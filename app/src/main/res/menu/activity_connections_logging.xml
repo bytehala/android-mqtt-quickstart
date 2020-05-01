@@ -15,7 +15,8 @@ IBM Corp.
     <item android:id="@+id/newConnection" android:enabled="true" 
         android:titleCondensed="@string/newConnectionShort" 
         android:title="@string/newConnection"
-        compat:showAsAction="always"/>
+        android:visible="false"
+        compat:showAsAction="never"/>
     <item android:id="@+id/endLogging" android:enabled="true"
         android:title="@string/endLogging"
         compat:showAsAction="never"/>

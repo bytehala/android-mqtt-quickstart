@@ -5,7 +5,9 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.navigation.fragment.NavHostFragment
+import kotlinx.android.synthetic.main.navigation_activity.*
 
 class NewMainActivity: AppCompatActivity() {
 
@@ -13,6 +15,8 @@ class NewMainActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.navigation_activity)
+
+        setSupportActionBar(toolbar)
 
         val host: NavHostFragment = supportFragmentManager
             .findFragmentById(R.id.my_nav_host_fragment) as NavHostFragment? ?: return

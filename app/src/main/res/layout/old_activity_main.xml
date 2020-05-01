@@ -13,7 +13,8 @@ IBM Corp.
 <FrameLayout android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ListView
 
@@ -31,6 +32,9 @@ IBM Corp.
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="16dp"
+        app:tint="#FFFFFF"
         android:clickable="true"
+        android:focusable="true"
         android:src="@drawable/ic_add"/>
+<!--        android:backgroundTint="@color/design_default_color_primary"-->
 </FrameLayout>
