@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import io.bytehala.eclipsemqtt.sample.ActivityConstants.action
 import kotlinx.android.synthetic.main.old_activity_main.*
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions
 import org.eclipse.paho.client.mqttv3.MqttException
@@ -92,6 +93,7 @@ class MainFragment : Fragment() {
                     );
                     intent.putExtra("handle", c?.handle());
                     startActivity(intent);
+//                    findNavController().navigate(R.id.action_connection_details) // TODO
                 }
             }
         }
@@ -103,30 +105,30 @@ class MainFragment : Fragment() {
 
         arrayAdapter.notifyDataSetChanged()
 
-//        //Recover connections.
-//        val connections =
-//            Connections.getInstance(requireContext()).connections
-//
-//        //Register receivers again
-//        for (connection in connections.values) {
-//            connection.client.registerResources(requireContext())
-//            connection.client.setCallback(
-//                MqttCallbackHandler(
-//                    requireContext(),
-//                    connection.client.serverURI + connection.client.clientId
-//                )
-//            )
-//        }
+        //Recover connections.
+        val connections =
+            Connections.getInstance(requireContext()).connections
+
+        //Register receivers again
+        for (connection in connections.values) {
+            connection.client.registerResources(requireContext())
+            connection.client.setCallback(
+                MqttCallbackHandler(
+                    requireContext(),
+                    connection.client.serverURI + connection.client.clientId
+                )
+            )
+        }
     }
 
     override fun onDestroy() {
-//        val connections =
-//            Connections.getInstance(requireContext()).connections
-//
-//        for (connection in connections.values) {
-//            connection.registerChangeListener(changeListener)
-//            connection.client.unregisterResources()
-//        }
+        val connections =
+            Connections.getInstance(requireContext()).connections
+
+        for (connection in connections.values) {
+            connection.registerChangeListener(changeListener)
+            connection.client.unregisterResources()
+        }
         super.onDestroy()
     }
 
