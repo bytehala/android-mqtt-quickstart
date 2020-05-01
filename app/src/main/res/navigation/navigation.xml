@@ -20,6 +20,10 @@
         <action
             android:id="@+id/action_new_connection"
             app:destination="@id/newConnection_dest" />
+
+        <action
+            android:id="@+id/action_connection_details"
+            app:destination="@id/connectionDetailsActivity_dest" />
     </fragment>
 
     <fragment
@@ -41,4 +45,11 @@
         android:name="io.bytehala.eclipsemqtt.sample.newconnection.NewConnectionActivity"
         android:label="NewConnectionActivity"
         tools:layout="@layout/old_activity_new_connection"/>
+
+    <activity
+        android:id="@+id/connectionDetailsActivity_dest"
+        android:name="io.bytehala.eclipsemqtt.sample.connectiondetails.ConnectionDetailsActivity"
+        android:label="ConnectionDetailsActivity"
+        tools:layout="@layout/old_activity_connection_details"
+        />
 </navigation>

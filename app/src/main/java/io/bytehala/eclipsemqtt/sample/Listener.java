@@ -68,7 +68,6 @@ public class Listener implements OnMenuItemClickListener {
     this.connectionDetails = connectionDetails;
     this.clientHandle = clientHandle;
     context = connectionDetails;
-
   }
 
   /**
@@ -124,7 +123,10 @@ public class Listener implements OnMenuItemClickListener {
   /**
    * Reconnect the selected client
    */
+  @Deprecated
   private void reconnect() {
+
+    Log.d("TEST", "Reconnecting");
 
     Connections.getInstance(context).getConnection(clientHandle).changeConnectionStatus(ConnectionStatus.CONNECTING);
 

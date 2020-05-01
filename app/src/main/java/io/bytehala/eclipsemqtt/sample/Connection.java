@@ -67,7 +67,7 @@ public class Connection {
   /**
    * Connections status for  a connection
    */
-  enum ConnectionStatus {
+  public enum ConnectionStatus {
 
     /** Client is Connecting **/
     CONNECTING,
@@ -144,6 +144,8 @@ public class Connection {
    * @param action the history item to add
    */
   public void addAction(String action) {
+
+
 
     Object[] args = new String[1];
     SimpleDateFormat sdf = new SimpleDateFormat(context.getString(R.string.dateFormat));

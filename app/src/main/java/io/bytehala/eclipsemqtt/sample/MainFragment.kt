@@ -100,9 +100,33 @@ class MainFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+
+        arrayAdapter.notifyDataSetChanged()
+
+//        //Recover connections.
+//        val connections =
+//            Connections.getInstance(requireContext()).connections
+//
+//        //Register receivers again
+//        for (connection in connections.values) {
+//            connection.client.registerResources(requireContext())
+//            connection.client.setCallback(
+//                MqttCallbackHandler(
+//                    requireContext(),
+//                    connection.client.serverURI + connection.client.clientId
+//                )
+//            )
+//        }
     }
 
     override fun onDestroy() {
+//        val connections =
+//            Connections.getInstance(requireContext()).connections
+//
+//        for (connection in connections.values) {
+//            connection.registerChangeListener(changeListener)
+//            connection.client.unregisterResources()
+//        }
         super.onDestroy()
     }
 

@@ -15,11 +15,13 @@ package io.bytehala.eclipsemqtt.sample.connectiondetails;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -40,6 +42,7 @@ import io.bytehala.eclipsemqtt.sample.ActivityConstants;
 import io.bytehala.eclipsemqtt.sample.Connection;
 import io.bytehala.eclipsemqtt.sample.Connections;
 import io.bytehala.eclipsemqtt.sample.Listener;
+import io.bytehala.eclipsemqtt.sample.MqttCallbackHandler;
 import io.bytehala.eclipsemqtt.sample.R;
 
 /**
@@ -96,6 +99,10 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
 
     clientHandle = getIntent().getStringExtra("handle");
 
+    //clientHandle: tcp://broker.hivemq.com:1883random111
+//    clientHandle: tcp://broker.hivemq.com:1883random111
+    Log.d("TEST", "clientHandle: " + clientHandle);
+
     setContentView(R.layout.old_activity_connection_details);
     // Create the adapter that will return a fragment for each of the pages
     sectionsPagerAdapter = new SectionsPagerAdapter(
@@ -134,8 +141,28 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
   }
 
   @Override
+  protected void onResume() {
+    super.onResume();
+    //Recover connections.
+    Map<String, Connection> connections = Connections.getInstance(this).getConnections();
+
+    //Register receivers again
+    for (Connection connection : connections.values()) {
+      connection.getClient().registerResources(this);
+      connection.getClient().setCallback(new MqttCallbackHandler(this, connection.getClient().getServerURI() + connection.getClient().getClientId()));
+    }
+  }
+
+  @Override
   protected void onDestroy() {
     connection.removeChangeListener(null);
+
+    Map<String, Connection> connections = Connections.getInstance(this).getConnections();
+
+    for (Connection connection : connections.values()) {
+      connection.registerChangeListener(changeListener);
+      connection.getClient().unregisterResources();
+    }
     super.onDestroy();
   }
 
@@ -206,7 +233,10 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
     }
     else {
       menu.findItem(R.id.connectMenuOption).setOnMenuItemClickListener(
-          listener);
+              item -> {
+                reconnect();
+                return true;
+              });
     }
 
     return true;
@@ -389,6 +419,7 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
     try {
       String[] topics = new String[1];
       topics[0] = topic;
+      Log.d("TEST", "Subscribing to topic " + topics[0]);
       Connections.getInstance(this).getConnection(clientHandle).getClient()
               .subscribe(topic, qos, null, new ActionListener(this, ActionListener.Action.SUBSCRIBE, clientHandle, topics));
     }
@@ -443,6 +474,27 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
               .publish(topic, message.getBytes(), qos, retained, null, new ActionListener(this, ActionListener.Action.PUBLISH, clientHandle, args));
     } catch (MqttException e) {
       Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
+    }
+
+  }
+
+  private void reconnect() {
+
+    Log.d("TEST", "Reconnecting");
+
+    Connections.getInstance(this).getConnection(clientHandle).changeConnectionStatus(Connection.ConnectionStatus.CONNECTING);
+
+    Connection c = Connections.getInstance(this).getConnection(clientHandle);
+    try {
+      c.getClient().connect(c.getConnectionOptions(), null, new ActionListener(getApplicationContext(), ActionListener.Action.CONNECT, clientHandle));
+    }
+    catch (MqttSecurityException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to reconnect the client with the handle " + clientHandle, e);
+      c.addAction("Client failed to connect");
+    }
+    catch (MqttException e) {
+      Log.e(this.getClass().getCanonicalName(), "Failed to reconnect the client with the handle " + clientHandle, e);
+      c.addAction("Client failed to connect");
     }
 
   }

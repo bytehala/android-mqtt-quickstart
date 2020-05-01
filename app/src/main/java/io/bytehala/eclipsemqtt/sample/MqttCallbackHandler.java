@@ -20,6 +20,8 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
+
 import io.bytehala.eclipsemqtt.sample.Connection.ConnectionStatus;
 
 /**
@@ -77,6 +79,8 @@ public class MqttCallbackHandler implements MqttCallback {
    */
   @Override
   public void messageArrived(String topic, MqttMessage message) throws Exception {
+
+    Log.d("TEST", "Message arrived: " + topic + " " + message);
 
     //Get connection object associated with this object
     Connection c = Connections.getInstance(context).getConnection(clientHandle);
