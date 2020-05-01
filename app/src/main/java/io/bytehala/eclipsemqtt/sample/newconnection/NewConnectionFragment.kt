@@ -1,13 +1,12 @@
 package io.bytehala.eclipsemqtt.sample.newconnection
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import io.bytehala.eclipsemqtt.sample.ActivityConstants
+import io.bytehala.eclipsemqtt.sample.Listener
 import io.bytehala.eclipsemqtt.sample.Notify
 import io.bytehala.eclipsemqtt.sample.R
 import kotlinx.android.synthetic.main.old_activity_new_connection.*
@@ -19,6 +18,7 @@ class NewConnectionFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.old_activity_new_connection, container, false)
     }
 
@@ -41,9 +41,8 @@ class NewConnectionFragment : Fragment() {
             val cleanSession = cleanSessionCheckBox.isChecked
 
 
-
             val result = Bundle()
-            
+
 //            //put data into a bundle to be passed back to ClientConnections
             result.putString(ActivityConstants.server, server)
             result.putString(ActivityConstants.port, port)
@@ -70,5 +69,20 @@ class NewConnectionFragment : Fragment() {
             val actionConnect = NewConnectionFragmentDirections.actionConnect(result)
             findNavController().navigate(actionConnect)
         }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.activity_new_connection, menu)
+        /*
+        public boolean onCreateOptionsMenu(Menu menu) {
+    getMenuInflater().inflate(R.menu.activity_new_connection, menu);
+    menu.findItem(R.id.connectActionDeprecated).setOnMenuItemClickListener(listener);
+
+    return true;
+  }
+         */
+        val listener = Listener(requireActivity());
+        menu.findItem(R.id.advanced).setOnMenuItemClickListener(listener);
     }
 }
