@@ -5,7 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.ArrayAdapter
-import androidx.activity.OnBackPressedCallback
+import androidx.core.content.ContextCompat.getColor
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -23,9 +24,11 @@ class MainFragment : Fragment() {
 
     lateinit var arrayAdapter: ArrayAdapter<Connection>
 
-    var contextualActionBarActive = false
-
     val changeListener = ChangeListener()
+
+    var deleteMode = false
+
+    val deleteIds = ArrayList<Int>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +37,6 @@ class MainFragment : Fragment() {
             requireContext(),
             R.layout.old_connection_text_view
         )
-
-
 
         // get all available connections
         val connections =
@@ -56,9 +57,7 @@ class MainFragment : Fragment() {
         val safeArgs: MainFragmentArgs by navArgs()
         val result = safeArgs.result
 
-        Log.d("TEST", "Result onCreate" + result?.getString(ActivityConstants.server))
-
-        result?.let {connectAction(result)}
+        result?.let { connectAction(result) }
     }
 
     override fun onCreateView(
@@ -68,25 +67,6 @@ class MainFragment : Fragment() {
     ): View? {
         setHasOptionsMenu(true)
         return inflater.inflate(R.layout.old_activity_main, container, false)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-
-        val menuItemClickListener: MenuItem.OnMenuItemClickListener =
-            Listener(requireActivity())
-
-        //load the correct menu depending on the status of logging
-        if (Listener.logging) {
-            inflater.inflate(R.menu.activity_connections_logging, menu)
-            menu.findItem(R.id.endLogging).setOnMenuItemClickListener(menuItemClickListener)
-        } else {
-            inflater.inflate(R.menu.activity_connections, menu)
-            menu.findItem(R.id.startLogging).setOnMenuItemClickListener(menuItemClickListener)
-        }
-        menu.findItem(R.id.newConnection).setOnMenuItemClickListener {
-            findNavController().navigate(R.id.action_new_connection)
-            true
-        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -100,7 +80,7 @@ class MainFragment : Fragment() {
 
         list.setOnItemClickListener { parent, view, position, id ->
             run {
-                if (!contextualActionBarActive) {
+                if (!deleteMode) {
                     val c = arrayAdapter.getItem(position);
 
                     // start the connectionDetails activity to display the details about the
@@ -113,13 +93,69 @@ class MainFragment : Fragment() {
                     intent.putExtra("handle", c?.handle());
                     startActivity(intent);
 //                    findNavController().navigate(R.id.action_connection_details) // TODO
+                } else {
+                    view.setBackgroundColor(
+                        getColor(
+                            requireActivity(),
+                            android.R.color.holo_blue_dark
+                        )
+                    )
+                    addToDeleteCollection(position)
                 }
+            }
+        }
+
+        list.setOnItemLongClickListener { parent, view, position, id ->
+            run {
+                deleteMode = true
+                view.setBackgroundColor(getColor(requireActivity(), android.R.color.holo_blue_dark))
+                requireActivity().invalidateOptionsMenu()
+                addToDeleteCollection(position)
+                true
             }
         }
 
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
 
+        val menuItemClickListener: MenuItem.OnMenuItemClickListener =
+            Listener(requireActivity())
+
+        //load the correct menu depending on the status of logging
+        if (deleteMode) {
+            inflater.inflate(R.menu.delete, menu)
+            menu.findItem(R.id.delete).setOnMenuItemClickListener {
+                deleteMode = false
+                val deleteConnections = ArrayList<Connection>()
+                deleteIds.forEach {
+                    val connection = arrayAdapter.getItem(it)
+                    list.get(it)
+                        .setBackgroundColor(getColor(requireActivity(), android.R.color.white))
+                    deleteConnections.add(connection!!)
+                }
+                deleteConnections.forEach {
+                    arrayAdapter.remove(it)
+                    Connections.getInstance(requireContext()).removeConnection(it)
+                }
+                deleteIds.clear()
+                requireActivity().invalidateOptionsMenu()
+
+
+                false
+            }
+        } else if (Listener.logging) {
+            inflater.inflate(R.menu.activity_connections_logging, menu)
+            menu.findItem(R.id.endLogging).setOnMenuItemClickListener(menuItemClickListener)
+        } else {
+            inflater.inflate(R.menu.activity_connections, menu)
+            menu.findItem(R.id.startLogging).setOnMenuItemClickListener(menuItemClickListener)
+        }
+    }
+
+    private fun addToDeleteCollection(index: Int) {
+        deleteIds.add(index)
+    }
 
     private fun connectAction(data: Bundle) {
         val conOpt = MqttConnectOptions()
@@ -155,21 +191,28 @@ class MainFragment : Fragment() {
             "tcp://$server:$port"
         }
 
-        val client = Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
+        val client =
+            Connections.getInstance(requireContext()).createClient(requireContext(), uri, clientId)
 
         if (ssl) {
             try {
-                if(!ssl_key.isNullOrEmpty()) {
+                if (!ssl_key.isNullOrEmpty()) {
                     val key = FileInputStream(ssl_key)
-                    conOpt.socketFactory = client.getSSLSocketFactory(key,
-                        "mqtttest")
+                    conOpt.socketFactory = client.getSSLSocketFactory(
+                        key,
+                        "mqtttest"
+                    )
                 }
             } catch (e: MqttSecurityException) {
-                Log.e(javaClass.canonicalName,
-                    "MqttException Occured: ", e)
+                Log.e(
+                    javaClass.canonicalName,
+                    "MqttException Occured: ", e
+                )
             } catch (e: FileNotFoundException) {
-                Log.e(javaClass.canonicalName,
-                    "MqttException Occured: SSL Key file not found", e)
+                Log.e(
+                    javaClass.canonicalName,
+                    "MqttException Occured: SSL Key file not found", e
+                )
             }
         }
 
@@ -189,8 +232,10 @@ class MainFragment : Fragment() {
         val timeout = data.getInt(ActivityConstants.timeout)
         val keepalive = data.getInt(ActivityConstants.keepalive)
 
-        val connection = Connection(clientHandle, clientId, server, port,
-            requireContext(), client, ssl)
+        val connection = Connection(
+            clientHandle, clientId, server, port,
+            requireContext(), client, ssl
+        )
         arrayAdapter.insert(connection, 0)
 
         connection.registerChangeListener(changeListener)
@@ -209,13 +254,20 @@ class MainFragment : Fragment() {
             conOpt.password = password?.toCharArray()
         }
 
-        val callback = ActionListener(requireContext(), ActionListener.Action.CONNECT, clientHandle, actionArgs)
+        val callback = ActionListener(
+            requireContext(),
+            ActionListener.Action.CONNECT,
+            clientHandle,
+            actionArgs
+        )
         var doConnect = true
 
         if (message!!.isNotEmpty() || topic!!.isNotEmpty()) {
             try {
-                conOpt.setWill(topic, message.toByteArray(), qos,
-                    retained)
+                conOpt.setWill(
+                    topic, message.toByteArray(), qos,
+                    retained
+                )
             } catch (e: Exception) {
                 Log.e(javaClass.getCanonicalName(), "Exception Occured", e)
                 doConnect = false
@@ -234,8 +286,10 @@ class MainFragment : Fragment() {
             try {
                 client.connect(conOpt, null, callback)
             } catch (e: MqttException) {
-                Log.e(javaClass.getCanonicalName(),
-                    "MqttException Occured", e)
+                Log.e(
+                    javaClass.getCanonicalName(),
+                    "MqttException Occured", e
+                )
             }
         }
     }

@@ -380,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
             MenuInflater inflater = mode.getMenuInflater();
-            inflater.inflate(R.menu.activity_client_connections_contextual, menu);
+            inflater.inflate(R.menu.delete, menu);
             clientConnections.contextualActionBarActive = true;
             return true;
         }
