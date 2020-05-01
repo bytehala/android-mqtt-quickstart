@@ -19,8 +19,9 @@
         <service android:name="org.eclipse.paho.android.service.MqttService" >
         </service>
 
-        <activity android:name=".NewMainActivity" >
 <!--        <activity android:name=".MainActivity" >-->
+        <activity android:name=".NewMainActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
