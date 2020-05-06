@@ -60,3 +60,9 @@ Honestly, when I made an MQTT app for a client, I just built on top of this samp
 This app was made in 2015-2016, and is a demo of how to use the Eclipse MQTT Libraries, not how to code in Android.
 
 Architecture components are a thing now, and I strongly advise the use of ViewModel and LifecycleHook.
+
+# Work In Progress
+Definitely look at the "jetpacknav" branch which aims to transform everything into a Single-Activity application, which has been the Android recommendation since 2018. It's currently a work in progress but a clear example of how to transform legacy apps from the old Android paradigm (multiple-Activity) to the newer ones (single-Activity Jetpack).
+
+# MQTT V3 vs V5
+This project uses MQTT v3 and I will be looking into using v3 and v5 in the near future.
