@@ -66,3 +66,5 @@ Definitely look at the "jetpacknav" branch which aims to transform everything in
 
 # MQTT V3 vs V5
 This project uses MQTT v3 and I will be looking into using v3 and v5 in the near future.
+
+### Note: The Repository is forked to add sms functionality to application
