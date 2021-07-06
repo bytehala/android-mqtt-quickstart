@@ -97,16 +97,6 @@ IBM Corp.
         android:enabled="false"
         android:text="@string/subscribe" />
 
-<!--    <androidx.appcompat.widget.AppCompatButton-->
-<!--        android:id="@+id/SendMessage"-->
-<!--        style="@style/Widget.AppCompat.Button.Colored"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_below="@id/subscribeButton"-->
-<!--        android:layout_marginTop="25dp"-->
-<!--        android:enabled="true"-->
-<!--        android:text="@string/send_message_button" />-->
-
 
 
 </RelativeLayout>
