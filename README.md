@@ -1,7 +1,18 @@
 > :warning: **Please feel free to create issues if it does not run for you.
 
-# android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
-Android Studio port of the Eclipse paho MQTT sample project.
+# Android MQTT Application
+you can publish or subscribe on any topic you want
+
+## Send SMS functionality is added
+If you want to send sms, you have to first subscribe to sms topic in application
+To set your phone number in messages received via sms topic, The thirteen first characters of your message will be the phone number you want to send
+example:
+```message topic: sms
+payload: +989375915077 Hello
+```
+Sending message was tested on samsung galaxy mini s5570 SDK version 18 ( Cyanogen mod )
+
+It is highly recommended to change the default phone number in ```src\main\java\io\bytehala\eclipsemqtt\sample\MqttCallbackHandler.java``` line 141
 
 ## Environment Tested On
 1. OpenJDK Java 11 by Amazon (sdkman 11.0.6-amzn)

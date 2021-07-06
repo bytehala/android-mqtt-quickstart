@@ -368,10 +368,6 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
       connectionDetails.findViewById(R.id.subscribeButton).setOnClickListener(
               view -> subscribe()
       );
-      // send a sample text to my phone
-      connectionDetails.findViewById(R.id.SendMessage).setOnClickListener(
-              view -> sendMessage("Hello from galaxy mini")
-      );
     }
   }
 
@@ -458,13 +454,6 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
       Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
     }
 
-  }
-  private void sendMessage(String message){
-    Intent intent = new Intent(getApplicationContext(), ConnectionDetailsActivity.class);
-    PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0,intent , 0);
-
-    SmsManager sms = SmsManager.getDefault();
-    sms.sendTextMessage("+989375915077", null, message, pi , null);
   }
 
 }
