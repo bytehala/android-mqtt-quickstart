@@ -7,17 +7,20 @@ you can publish or subscribe on any topic you want
 If you want to send sms, you have to first subscribe to sms topic in application
 To set your phone number in messages received via sms topic, The thirteen first characters of your message will be the phone number you want to send
 example:
-```message topic: sms
+```
+message topic: sms
 payload: +989375915077 Hello
 ```
-Sending message was tested on samsung galaxy mini s5570 SDK version 18 ( Cyanogen mod )
+
 
 It is highly recommended to change the default phone number in ```src\main\java\io\bytehala\eclipsemqtt\sample\MqttCallbackHandler.java``` line 141
 
 ## Environment Tested On
 1. OpenJDK Java 11 by Amazon (sdkman 11.0.6-amzn)
-2. Pixel XL API 29 emulator
-3. Android Studio 3.6.2
+2. Samsung galaxy mini s5570 SDK version 18 ( OS android, Cyanogen mod )
+3. Android Studio 4.1.1
+
+#### This information are from the forked repo
 
 I am maintaining this on my own, and as such am unable to test on multiple devices and environments.
 
@@ -77,5 +80,3 @@ Definitely look at the "jetpacknav" branch which aims to transform everything in
 
 # MQTT V3 vs V5
 This project uses MQTT v3 and I will be looking into using v3 and v5 in the near future.
-
-### Note: The Repository is forked to add sms functionality to application
