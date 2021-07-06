@@ -17,7 +17,10 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.CheckBox;
@@ -347,6 +350,10 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
   }
 
   private void updateButtons() {
+    /*
+    After sending SMS we would crash here , @param clientHandle is null
+     */
+
     boolean connected = Connections.getInstance(connectionDetails)
             .getConnection(clientHandle).isConnected();
 
@@ -360,6 +367,10 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
       connectionDetails.findViewById(R.id.subscribeButton).setEnabled(connected);
       connectionDetails.findViewById(R.id.subscribeButton).setOnClickListener(
               view -> subscribe()
+      );
+      // send a sample text to my phone
+      connectionDetails.findViewById(R.id.SendMessage).setOnClickListener(
+              view -> sendMessage("Hello from galaxy mini")
       );
     }
   }
@@ -447,6 +458,13 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
       Log.e(this.getClass().getCanonicalName(), "Failed to publish a messged from the client with the handle " + clientHandle, e);
     }
 
+  }
+  private void sendMessage(String message){
+    Intent intent = new Intent(getApplicationContext(), ConnectionDetailsActivity.class);
+    PendingIntent pi = PendingIntent.getActivity(getApplicationContext(), 0,intent , 0);
+
+    SmsManager sms = SmsManager.getDefault();
+    sms.sendTextMessage("+989375915077", null, message, pi , null);
   }
 
 }
