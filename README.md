@@ -1,9 +1,10 @@
 > :warning: **Please feel free to create issues if it does not run for you.
+# android-mqtt-quickstart [![Build Status](https://travis-ci.org/bytehala/android-mqtt-quickstart.svg?branch=master)](https://travis-ci.org/bytehala/android-mqtt-quickstart)
+Android Studio port of the Eclipse paho MQTT sample project.
+Beside that you can use subscribe/pulish to a MQTT server, sms functionality is added to this project.
 
-# Android MQTT Application
-you can publish or subscribe on any topic you want
 
-## Send SMS functionality is added
+## How sms functionality is working ?
 If you want to send sms, you have to first subscribe to sms topic in application
 To set your phone number in messages received via sms topic, The thirteen first characters of your message will be the phone number you want to send
 example:
