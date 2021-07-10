@@ -17,7 +17,10 @@ import java.beans.PropertyChangeListener;
 import java.util.ArrayList;
 
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.CheckBox;
@@ -347,6 +350,10 @@ public class ConnectionDetailsActivity extends AppCompatActivity implements
   }
 
   private void updateButtons() {
+    /*
+    After sending SMS we would crash here , @param clientHandle is null
+     */
+
     boolean connected = Connections.getInstance(connectionDetails)
             .getConnection(clientHandle).isConnected();
 
